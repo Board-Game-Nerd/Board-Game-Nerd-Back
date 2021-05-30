@@ -16,6 +16,7 @@ public class GameDto {
   private Integer maxPlayers;
   private String victory;
   private String theme;
+  private String medium;
   private Integer duration;
   private String lastPlayedDate;
   private Double avgScore;

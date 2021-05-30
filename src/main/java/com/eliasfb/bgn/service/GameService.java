@@ -7,9 +7,11 @@ import com.eliasfb.bgn.dto.game.GameDto;
 import com.eliasfb.bgn.dto.game.GameLocationUpdateDto;
 import com.eliasfb.bgn.mapper.GameMapper;
 import com.eliasfb.bgn.model.Game;
+import com.eliasfb.bgn.model.Image;
 import com.eliasfb.bgn.model.Location;
 import com.eliasfb.bgn.model.Score;
 import com.eliasfb.bgn.repository.GameRepository;
+import com.eliasfb.bgn.repository.ImageRepository;
 import com.eliasfb.bgn.repository.LocationRepository;
 import com.eliasfb.bgn.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.eliasfb.bgn.service.DateService.DATE_FORMAT;
 
@@ -27,6 +30,7 @@ public class GameService {
   @Autowired private GameRepository repository;
   @Autowired private LocationRepository locationRepository;
   @Autowired private ScoreRepository scoreRepository;
+  @Autowired private ImageRepository imageRepository;
   @Autowired private GameMapper mapper;
 
   private static final List<String> DEFAULT_SCORES =
@@ -34,6 +38,10 @@ public class GameService {
 
   public List<GameDto> findAll() {
     return this.mapper.gameToGameDtoList(this.repository.findAll());
+  }
+
+  public List<Integer> findIds() {
+    return this.repository.findAll().stream().map(g -> g.getId()).collect(Collectors.toList());
   }
 
   public GameDetailDto findById(Integer id) {
@@ -48,6 +56,8 @@ public class GameService {
     DEFAULT_SCORES.stream()
         .map(s -> new Score(gameCreated.getId(), s, 0))
         .forEach(s -> this.scoreRepository.save(s));
+    imageRepository.save(
+        new Image(gameCreated.getId(), gameCreated.getName().replace(" ", "").concat(".jpg"), 0));
     return responseDto;
   }
 

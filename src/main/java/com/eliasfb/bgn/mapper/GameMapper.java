@@ -23,6 +23,7 @@ public interface GameMapper {
   @Mapping(source = "victory.name", target = "victory")
   @Mapping(source = "theme.name", target = "theme")
   @Mapping(source = "averageScore", target = "avgScore")
+  @Mapping(source = "medium.name", target = "medium")
   GameDto basicGameToGameDto(Game game);
 
   default GameDto gameToGameDto(Game game) {

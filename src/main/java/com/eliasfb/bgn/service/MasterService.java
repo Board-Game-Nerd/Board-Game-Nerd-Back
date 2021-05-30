@@ -20,14 +20,18 @@ public class MasterService {
   @Autowired private MasterMapper mapper;
 
   public MastersDto findAll() {
-    List<MasterDto> themesDto = this.mapper.themeToMasterDto(this.themeRepository.findAll());
+    List<MasterDto> themesDto =
+        this.mapper.themeToMasterDto(this.themeRepository.findByOrderByNameAsc());
     List<MasterDto> complexitiesDto =
         this.mapper.complexityToMasterDto(this.complexityRepository.findAll());
     List<MasterDto> locationsDto =
-        this.mapper.locationToMasterDto(this.locationRepository.findAll());
-    List<MasterDto> mediaDto = this.mapper.mediumToMasterDto(this.mediumRepository.findAll());
-    List<MasterDto> stylesDto = this.mapper.styleToMasterDto(this.styleRepository.findAll());
-    List<MasterDto> victoriesDto = this.mapper.victoryToMasterDto(this.victoryRepository.findAll());
+        this.mapper.locationToMasterDto(this.locationRepository.findByOrderByNameAsc());
+    List<MasterDto> mediaDto =
+        this.mapper.mediumToMasterDto(this.mediumRepository.findByOrderByNameAsc());
+    List<MasterDto> stylesDto =
+        this.mapper.styleToMasterDto(this.styleRepository.findByOrderByNameAsc());
+    List<MasterDto> victoriesDto =
+        this.mapper.victoryToMasterDto(this.victoryRepository.findByOrderByNameAsc());
 
     return new MastersDto(
         themesDto, complexitiesDto, locationsDto, mediaDto, stylesDto, victoriesDto);

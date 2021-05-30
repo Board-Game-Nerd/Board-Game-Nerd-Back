@@ -22,6 +22,11 @@ public class GameController {
     return this.service.findAll();
   }
 
+  @GetMapping(path = {"/ids"})
+  public List<Integer> findIds() {
+    return this.service.findIds();
+  }
+
   @GetMapping(path = {"/{id}"})
   public GameDetailDto findGame(@PathVariable("id") int id) {
     return this.service.findById(id);
