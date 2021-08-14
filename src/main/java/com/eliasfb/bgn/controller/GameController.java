@@ -37,6 +37,11 @@ public class GameController {
     return this.service.create(game);
   }
 
+  @PostMapping(path = {"/{id}/favorite"})
+  public GameDetailDto updateGameFavoriteStatus(@PathVariable("id") int id) {
+    return this.service.updateFavoriteStatus(id);
+  }
+
   @PutMapping(path = {"/{id}/location"})
   public ResponseDto updateLocation(
       @PathVariable("id") int id, @RequestBody GameLocationUpdateDto game) {

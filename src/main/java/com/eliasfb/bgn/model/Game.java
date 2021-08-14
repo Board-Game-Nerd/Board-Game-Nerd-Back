@@ -64,6 +64,8 @@ public class Game {
 
   @Column private String featuresDisabled;
 
+  @Column private boolean isFavorite;
+
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);
   }

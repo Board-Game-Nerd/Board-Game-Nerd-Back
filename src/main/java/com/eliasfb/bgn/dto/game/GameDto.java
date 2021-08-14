@@ -23,4 +23,5 @@ public class GameDto {
   private String lastPlayedDate;
   private Double avgScore;
   private List<String> featuresDisabled;
+  private boolean isFavorite;
 }

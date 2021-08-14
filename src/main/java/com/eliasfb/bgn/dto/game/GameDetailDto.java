@@ -23,4 +23,5 @@ public class GameDetailDto {
   private String lastPlayedDate;
   private ScoreInfoDto scoreInfo;
   private String rulesUrl;
+  private boolean isFavorite;
 }

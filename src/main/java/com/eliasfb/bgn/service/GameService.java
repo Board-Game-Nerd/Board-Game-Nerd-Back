@@ -62,6 +62,12 @@ public class GameService {
   }
 
   @Transactional
+  public GameDetailDto updateFavoriteStatus(int id) {
+    this.repository.setFavorite(id);
+    return this.findById(id);
+  }
+
+  @Transactional
   public ResponseDto updateLocation(Integer gameId, GameLocationUpdateDto dto) {
     ResponseDto responseDto =
         new ResponseDto(ResponseDto.OK_CODE, "Game location updated successfully");
