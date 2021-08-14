@@ -4,9 +4,11 @@ import com.eliasfb.bgn.dto.game.CreateGameDto;
 import com.eliasfb.bgn.dto.game.GameDetailDto;
 import com.eliasfb.bgn.dto.game.GameDto;
 import com.eliasfb.bgn.model.Game;
+import com.mysql.cj.util.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,7 @@ public interface GameMapper {
   @Mapping(source = "theme.name", target = "theme")
   @Mapping(source = "averageScore", target = "avgScore")
   @Mapping(source = "medium.name", target = "medium")
+  @Mapping(target = "featuresDisabled", ignore = true)
   GameDto basicGameToGameDto(Game game);
 
   default GameDto gameToGameDto(Game game) {
@@ -33,6 +36,9 @@ public interface GameMapper {
             .map(g -> BACKEND_HOST + "/images/" + g.getName())
             .findFirst()
             .orElse(null));
+    if (!StringUtils.isEmptyOrWhitespaceOnly(game.getFeaturesDisabled())) {
+      gameDto.setFeaturesDisabled(Arrays.asList(game.getFeaturesDisabled().split(",")));
+    }
     return gameDto;
   }
 
@@ -51,6 +57,7 @@ public interface GameMapper {
         game.getImages().stream()
             .map(g -> BACKEND_HOST + "/images/" + g.getName())
             .collect(Collectors.toList()));
+    gameDetailDto.setRulesUrl(BACKEND_HOST + "/rules/" + game.getName().replace(" ", "") + ".pdf");
     return gameDetailDto;
   }
 

@@ -62,6 +62,8 @@ public class Game {
 
   @Column private String lastPlayedDate;
 
+  @Column private String featuresDisabled;
+
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);
   }

@@ -22,4 +22,5 @@ public class GameDetailDto {
   private Integer duration;
   private String lastPlayedDate;
   private ScoreInfoDto scoreInfo;
+  private String rulesUrl;
 }
