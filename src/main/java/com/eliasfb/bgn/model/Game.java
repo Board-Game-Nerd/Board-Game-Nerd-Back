@@ -12,8 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "game")
 @Data
-@ToString(exclude = {"theme", "complexity", "location", "medium", "style", "victory"})
-@EqualsAndHashCode(exclude = {"theme", "complexity", "location", "medium", "style", "victory"})
+@ToString(exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
+@EqualsAndHashCode(
+    exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
 @NoArgsConstructor
 public class Game {
   @Id
@@ -65,6 +66,10 @@ public class Game {
   @Column private String featuresDisabled;
 
   @Column private boolean isFavorite;
+
+  @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JsonIgnore
+  private List<Play> plays;
 
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);

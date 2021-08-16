@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class GameDetailDto {
+  private Integer id;
   private String name;
   private List<String> imageUrls;
   private String description;
