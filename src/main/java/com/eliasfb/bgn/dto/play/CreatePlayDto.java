@@ -8,5 +8,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class CreatePlayDto {
+  private Integer gameId;
   private List<CreatePlayPlayerDto> players;
 }

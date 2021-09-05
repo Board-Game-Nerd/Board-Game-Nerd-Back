@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlayPlayerDto {
-  private PlayerDto playerDto;
+  private PlayerDto player;
   private Integer score;
 }

@@ -7,6 +7,7 @@ import com.eliasfb.bgn.mapper.PlayerMapper;
 import com.eliasfb.bgn.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -23,7 +24,9 @@ public class PlayerService {
   @Transactional
   public ResponseDto create(CreatePlayerDto playerDto) {
     ResponseDto responseDto = new ResponseDto(ResponseDto.OK_CODE, "Player created successfully");
-    this.repository.save(this.mapper.createPlayerToPlayer(playerDto));
+    if (!StringUtils.isEmpty(playerDto.getName())) {
+      this.repository.save(this.mapper.createPlayerToPlayer(playerDto));
+    }
     return responseDto;
   }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PlayDto {
   private int id;
+  private String date;
   private List<PlayPlayerDto> players;
   private BasicGameDto game;
 }
