@@ -3,7 +3,9 @@ package com.eliasfb.bgn.mapper;
 import com.eliasfb.bgn.dto.game.CreateGameDto;
 import com.eliasfb.bgn.dto.game.GameDetailDto;
 import com.eliasfb.bgn.dto.game.GameDto;
+import com.eliasfb.bgn.dto.game.GameExpansionDto;
 import com.eliasfb.bgn.model.Game;
+import com.eliasfb.bgn.model.GameExpansion;
 import com.mysql.cj.util.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface GameMapper {
 
-  public static final String BACKEND_HOST = "http://192.168.0.25:8080";
+  String BACKEND_HOST = "http://192.168.0.25:8080";
 
   default List<GameDto> gameToGameDtoList(List<Game> games) {
     return games.stream().map(g -> this.gameToGameDto(g)).collect(Collectors.toList());
@@ -42,6 +44,9 @@ public interface GameMapper {
     return gameDto;
   }
 
+  @Mapping(target = "name", source = "id.name")
+  GameExpansionDto gameExpansionToGameExpansionDto(GameExpansion gameExpansion);
+
   @Mapping(source = "victory.name", target = "victory")
   @Mapping(source = "theme.name", target = "theme")
   @Mapping(source = "complexity.name", target = "complexity")
@@ -49,6 +54,7 @@ public interface GameMapper {
   @Mapping(source = "style.name", target = "style")
   @Mapping(source = "scores", target = "scoreInfo.scores")
   @Mapping(source = "averageScore", target = "scoreInfo.avgValue")
+  @Mapping(target = "expansions.content", source = "expansions")
   GameDetailDto basicGameToGameDetailDto(Game game);
 
   default GameDetailDto gameToGameDetailDto(Game game) {
@@ -58,6 +64,10 @@ public interface GameMapper {
             .map(g -> BACKEND_HOST + "/images/" + g.getName())
             .collect(Collectors.toList()));
     gameDetailDto.setRulesUrl(BACKEND_HOST + "/rules/" + game.getName().replace(" ", "") + ".pdf");
+    gameDetailDto
+        .getExpansions()
+        .setTotallyOwned(
+            gameDetailDto.getExpansions().getContent().stream().allMatch(ex -> ex.getOwned()));
     return gameDetailDto;
   }
 

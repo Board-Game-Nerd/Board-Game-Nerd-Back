@@ -12,6 +12,7 @@ public class GameDetailDto {
   private String name;
   private List<String> imageUrls;
   private String description;
+  private String auxiliarDescription;
   private Integer minPlayers;
   private Integer maxPlayers;
   private String theme;
@@ -25,4 +26,5 @@ public class GameDetailDto {
   private ScoreInfoDto scoreInfo;
   private String rulesUrl;
   private boolean isFavorite;
+  private GameExpansionsDto expansions;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(
     exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
 @NoArgsConstructor
-public class Game {
+public class Game implements Serializable {
   @Id
   @Column
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,7 @@ public class Game {
 
   @Column private String name;
   @Column private String description;
+  @Column private String auxiliarDescription;
   @Column private Integer minPlayers;
   @Column private Integer maxPlayers;
 
@@ -70,6 +72,11 @@ public class Game {
   @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore
   private List<Play> plays;
+
+  @OneToMany(mappedBy = "id.gameId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @OrderBy("sequence ASC")
+  @JsonIgnore
+  private List<GameExpansion> expansions;
 
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);
