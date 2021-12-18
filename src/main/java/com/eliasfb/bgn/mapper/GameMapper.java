@@ -64,10 +64,11 @@ public interface GameMapper {
             .map(g -> BACKEND_HOST + "/images/" + g.getName())
             .collect(Collectors.toList()));
     gameDetailDto.setRulesUrl(BACKEND_HOST + "/rules/" + game.getName().replace(" ", "") + ".pdf");
-    gameDetailDto
-        .getExpansions()
-        .setTotallyOwned(
-            gameDetailDto.getExpansions().getContent().stream().allMatch(ex -> ex.getOwned()));
+    long expansionsOwned =
+        gameDetailDto.getExpansions().getContent().stream().filter(ex -> ex.getOwned()).count();
+    float expansionsPercentage =
+        (float) expansionsOwned / (float) gameDetailDto.getExpansions().getContent().size();
+    gameDetailDto.getExpansions().setPercentageOwned(Math.round(expansionsPercentage * 100));
     return gameDetailDto;
   }
 

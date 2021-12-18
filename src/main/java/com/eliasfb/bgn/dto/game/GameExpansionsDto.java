@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class GameExpansionsDto {
-  private Boolean totallyOwned;
+  private Integer percentageOwned;
   List<GameExpansionDto> content;
 }
