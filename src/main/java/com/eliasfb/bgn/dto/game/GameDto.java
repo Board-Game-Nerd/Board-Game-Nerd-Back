@@ -20,7 +20,6 @@ public class GameDto {
   private String theme;
   private String medium;
   private Integer duration;
-  private String lastPlayedDate;
   private Double avgScore;
   private List<String> featuresDisabled;
   private boolean isFavorite;

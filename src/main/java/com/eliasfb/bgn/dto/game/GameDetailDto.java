@@ -22,7 +22,6 @@ public class GameDetailDto {
   private String style;
   private String victory;
   private Integer duration;
-  private String lastPlayedDate;
   private ScoreInfoDto scoreInfo;
   private String rulesUrl;
   private boolean isFavorite;

@@ -63,8 +63,6 @@ public class Game implements Serializable {
 
   @Column private Integer duration;
 
-  @Column private String lastPlayedDate;
-
   @Column private String featuresDisabled;
 
   @Column private boolean isFavorite;

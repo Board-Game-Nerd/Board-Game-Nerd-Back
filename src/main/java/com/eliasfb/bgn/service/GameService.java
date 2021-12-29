@@ -19,12 +19,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.eliasfb.bgn.service.DateService.DATE_FORMAT;
 
 @Service
 public class GameService {
@@ -76,16 +73,6 @@ public class GameService {
     Game game = this.repository.findById(gameId);
     Location location = this.locationRepository.findById(dto.getLocationId());
     game.setLocation(location);
-    this.repository.save(game);
-    return responseDto;
-  }
-
-  @Transactional
-  public ResponseDto registerPlay(Integer gameId) {
-    ResponseDto responseDto =
-        new ResponseDto(ResponseDto.OK_CODE, "Game play registered successfully");
-    Game game = this.repository.findById(gameId);
-    game.setLastPlayedDate(LocalDateTime.now().format(DATE_FORMAT));
     this.repository.save(game);
     return responseDto;
   }

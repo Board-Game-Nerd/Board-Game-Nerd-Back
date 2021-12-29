@@ -48,11 +48,6 @@ public class GameController {
     return this.service.updateLocation(id, game);
   }
 
-  @PutMapping(path = {"/{id}/play"})
-  public ResponseDto registerPlay(@PathVariable("id") int id) {
-    return this.service.registerPlay(id);
-  }
-
   @PutMapping(path = {"/{id}/score/{scoreId}/{value}"})
   public Double updateScoreValue(
       @PathVariable("id") int id,
