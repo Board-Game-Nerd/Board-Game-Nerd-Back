@@ -24,6 +24,7 @@ public class Game implements Serializable {
   private Integer id;
 
   @Column private String name;
+  @Column private String officialName;
   @Column private String description;
   @Column private String auxiliarDescription;
   @Column private Integer minPlayers;

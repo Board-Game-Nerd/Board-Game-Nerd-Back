@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import static com.eliasfb.bgn.service.DateService.DATE_FORMAT;
+import static com.eliasfb.bgn.service.DateService.BGN_DATE_FORMAT;
 
 @Service
 public class ConstantService {
@@ -22,7 +22,7 @@ public class ConstantService {
 
   public ConstantsDto findLastBuyDate() {
     String lastBuy = this.constantsRepository.findByIdentifier(LAST_BUY_IDENTIFIER).getValue();
-    LocalDate lastBuyDate = LocalDate.parse(lastBuy, DATE_FORMAT);
+    LocalDate lastBuyDate = LocalDate.parse(lastBuy, BGN_DATE_FORMAT);
     LocalDate nowDate = LocalDate.now();
     Long numDays = ChronoUnit.DAYS.between(lastBuyDate, nowDate);
     return new ConstantsDto(lastBuy, numDays);
@@ -31,7 +31,7 @@ public class ConstantService {
   @Transactional
   public ResponseDto registerBuy() {
     Constant constant = this.constantsRepository.findByIdentifier(LAST_BUY_IDENTIFIER);
-    String now = LocalDate.now().format(DATE_FORMAT);
+    String now = LocalDate.now().format(BGN_DATE_FORMAT);
     constant.setValue(now);
     this.constantsRepository.save(constant);
     return new ResponseDto(ResponseDto.OK_CODE, "Purchase registered correctly");

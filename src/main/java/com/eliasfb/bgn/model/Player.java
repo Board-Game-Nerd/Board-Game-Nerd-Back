@@ -26,4 +26,9 @@ public class Player {
   public Player(Integer id) {
     this.id = id;
   }
+
+  public Player(String name) {
+    this.name = name;
+    this.image = this.name + ".jpg";
+  }
 }

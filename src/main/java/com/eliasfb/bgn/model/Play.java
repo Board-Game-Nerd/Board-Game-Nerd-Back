@@ -32,4 +32,9 @@ public class Play {
       mappedBy = "id.play",
       cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
   private List<PlayPlayerRel> players;
+
+  public Play(String date, Game game) {
+    this.date = date;
+    this.game = game;
+  }
 }

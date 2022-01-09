@@ -9,5 +9,5 @@ public interface PlayRepository extends Repository<Play, Integer> {
 
   List<Play> findAll();
 
-  void save(Play play);
+  Play save(Play play);
 }

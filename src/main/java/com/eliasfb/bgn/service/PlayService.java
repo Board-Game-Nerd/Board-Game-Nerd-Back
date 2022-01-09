@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.eliasfb.bgn.service.DateService.DATE_FORMAT;
+import static com.eliasfb.bgn.service.DateService.BGN_DATE_FORMAT;
 
 @Service
 public class PlayService {
@@ -31,7 +31,7 @@ public class PlayService {
     ResponseDto responseDto = new ResponseDto(ResponseDto.OK_CODE, "Play created successfully");
     Play playToCreate = this.mapper.createPlayToPlay(playDto);
     playToCreate.setGame(this.gameRepository.findById(playDto.getGameId()));
-    playToCreate.setDate(LocalDateTime.now().format(DATE_FORMAT));
+    playToCreate.setDate(LocalDateTime.now().format(BGN_DATE_FORMAT));
     this.repository.save(playToCreate);
     return responseDto;
   }
