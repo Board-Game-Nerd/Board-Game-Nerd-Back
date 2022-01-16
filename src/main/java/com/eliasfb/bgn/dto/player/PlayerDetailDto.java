@@ -15,4 +15,5 @@ public class PlayerDetailDto {
   private Integer highestPlayScore;
   private GameStatDto favouriteGame;
   private GameStatDto highestWinRateGame;
+  private GameStatDto latestPlayedGame;
 }

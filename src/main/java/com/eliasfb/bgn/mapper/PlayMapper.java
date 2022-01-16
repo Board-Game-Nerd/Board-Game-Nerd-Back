@@ -1,9 +1,6 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.play.BasicGameDto;
-import com.eliasfb.bgn.dto.play.CreatePlayDto;
-import com.eliasfb.bgn.dto.play.PlayDto;
-import com.eliasfb.bgn.dto.play.PlayPlayerDto;
+import com.eliasfb.bgn.dto.play.*;
 import com.eliasfb.bgn.model.Play;
 import com.eliasfb.bgn.model.PlayPlayerRel;
 import com.eliasfb.bgn.model.PlayPlayerRelId;
@@ -53,6 +50,34 @@ public abstract class PlayMapper {
                 .orElse(null));
     playDto.setDate(STANDARD_DATE_FORMAT.format(play.getDate()));
     return playDto;
+  }
+
+  @Mapping(source = "players", target = "players", ignore = true)
+  @Mapping(source = "date", target = "date", ignore = true)
+  abstract PlayDetailDto basicPlayToPlayDetailDto(Play play);
+
+  public PlayDetailDto playToPlayDetailDto(Play play) {
+    PlayDetailDto playDetailDto = basicPlayToPlayDetailDto(play);
+    playDetailDto.setPlayers(
+        play.getPlayers().stream()
+            .map(
+                player ->
+                    new PlayPlayerDto(
+                        this.playerMapper.playerToPlayerDto(player.getId().getPlayer()),
+                        player.getScore(),
+                        player.isWinner()))
+            .collect(Collectors.toList()));
+    playDetailDto.setGame(new BasicGameDto());
+    playDetailDto.getGame().setName(play.getGame().getName());
+    playDetailDto
+        .getGame()
+        .setImageUrl(
+            play.getGame().getImages().stream()
+                .map(g -> BACKEND_HOST + "/images/" + g.getName())
+                .findFirst()
+                .orElse(null));
+    playDetailDto.setDate(STANDARD_DATE_FORMAT.format(play.getDate()));
+    return playDetailDto;
   }
 
   abstract Play basicCreatePlayToPlay(CreatePlayDto playDto);

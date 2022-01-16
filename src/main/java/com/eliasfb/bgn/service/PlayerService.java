@@ -24,10 +24,16 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
+import static com.eliasfb.bgn.service.DateService.STANDARD_DATE_FORMAT;
+
 @Service
 public class PlayerService {
   @Autowired private PlayerRepository repository;
   @Autowired private PlayerMapper mapper;
+
+  public List<Integer> findIds() {
+    return this.repository.findAll().stream().map(p -> p.getId()).collect(Collectors.toList());
+  }
 
   public List<PlayerDto> findAll() {
     List<Player> players = this.repository.findAll();
@@ -39,6 +45,9 @@ public class PlayerService {
               playerDto.setNumPlays(player.getPlays().size());
               return playerDto;
             })
+        .sorted(
+            (leftPlayer, rightPlayer) ->
+                rightPlayer.getNumPlays().compareTo(leftPlayer.getNumPlays()))
         .collect(Collectors.toList());
   }
 
@@ -53,9 +62,10 @@ public class PlayerService {
     playerDetailDto.setNumPlays(playerPlays.size());
     playerDetailDto.setHighestPlayScore(
         playerPlays.stream().mapToInt(play -> play.getScore()).max().orElseGet(null));
-    playerDetailDto.setFavouriteGame(getFavouriteGame(playerPlays));
     playerDetailDto.setTotalWinPercentage(getTotalWinPercentage(playerPlays));
+    playerDetailDto.setFavouriteGame(getFavouriteGame(playerPlays));
     playerDetailDto.setHighestWinRateGame(getHighestWinRateGame(playerPlays));
+    playerDetailDto.setLatestPlayedGame(getLatestPlayedGame(playerPlays));
     return playerDetailDto;
   }
 
@@ -106,6 +116,25 @@ public class PlayerService {
                     GameService.getFirstImageUrl(entry.getKey()),
                     entry.getValue().toString(),
                     getNumberOfPlaysOnGame(entry.getKey(), playerPlays).toString()))
+        .orElse(null);
+  }
+
+  public GameStatDto getLatestPlayedGame(List<PlayPlayerRel> playerPlays) {
+    return playerPlays.stream()
+        .sorted(
+            (leftPlay, rightPlay) ->
+                rightPlay
+                    .getId()
+                    .getPlay()
+                    .getDate()
+                    .compareTo(leftPlay.getId().getPlay().getDate()))
+        .findFirst()
+        .map(
+            latestPlay ->
+                new GameStatDto(
+                    latestPlay.getId().getPlay().getGame().getName(),
+                    GameService.getFirstImageUrl(latestPlay.getId().getPlay().getGame()),
+                    STANDARD_DATE_FORMAT.format(latestPlay.getId().getPlay().getDate())))
         .orElse(null);
   }
 

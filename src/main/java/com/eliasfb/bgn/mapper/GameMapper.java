@@ -69,6 +69,7 @@ public interface GameMapper {
     float expansionsPercentage =
         (float) expansionsOwned / (float) gameDetailDto.getExpansions().getContent().size();
     gameDetailDto.getExpansions().setPercentageOwned(Math.round(expansionsPercentage * 100));
+    gameDetailDto.setNumPlays(game.getPlays().size());
     return gameDetailDto;
   }
 

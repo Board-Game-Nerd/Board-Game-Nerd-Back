@@ -16,6 +16,11 @@ import java.util.List;
 public class PlayerController {
   @Autowired private PlayerService service;
 
+  @GetMapping(path = {"/ids"})
+  public List<Integer> findIds() {
+    return this.service.findIds();
+  }
+
   @GetMapping
   public List<PlayerDto> findAll() {
     return this.service.findAll();

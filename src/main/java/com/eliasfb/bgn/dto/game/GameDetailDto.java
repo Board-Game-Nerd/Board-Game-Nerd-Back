@@ -26,4 +26,5 @@ public class GameDetailDto {
   private String rulesUrl;
   private boolean isFavorite;
   private GameExpansionsDto expansions;
+  private Integer numPlays;
 }
