@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.List;
-
-import static com.eliasfb.bgn.service.DateService.BGN_DATE_FORMAT;
 
 @Service
 public class PlayService {
@@ -31,7 +29,7 @@ public class PlayService {
     ResponseDto responseDto = new ResponseDto(ResponseDto.OK_CODE, "Play created successfully");
     Play playToCreate = this.mapper.createPlayToPlay(playDto);
     playToCreate.setGame(this.gameRepository.findById(playDto.getGameId()));
-    playToCreate.setDate(LocalDateTime.now().format(BGN_DATE_FORMAT));
+    playToCreate.setDate(new Date(System.currentTimeMillis()));
     this.repository.save(playToCreate);
     return responseDto;
   }

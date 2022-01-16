@@ -20,7 +20,9 @@ public class ImportController {
   @PostMapping()
   public ResponseDto importAll() {
     try {
-      return this.service.importPlayers();
+      ResponseDto response = this.service.importPlayers();
+      response.setMessage(response.getMessage() + " / " + this.service.importPlays().getMessage());
+      return response;
     } catch (IOException e) {
       e.printStackTrace();
       return new ResponseDto(-1, e.toString());

@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
 @Data
-@ToString(exclude = {})
-@EqualsAndHashCode(exclude = {})
+@ToString(exclude = {"plays"})
+@EqualsAndHashCode(exclude = {"plays"})
 @NoArgsConstructor
 public class Player {
 
@@ -22,6 +23,11 @@ public class Player {
 
   @Column private String name;
   @Column private String image;
+
+  @OneToMany(
+      mappedBy = "id.player",
+      cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
+  private List<PlayPlayerRel> plays;
 
   public Player(Integer id) {
     this.id = id;

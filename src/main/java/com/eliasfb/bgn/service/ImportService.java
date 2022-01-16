@@ -16,14 +16,14 @@ import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import static com.eliasfb.bgn.service.DateService.BGN_DATE_FORMAT;
-import static com.eliasfb.bgn.service.DateService.BG_STATS_DATE_FORMAT;
+import static com.eliasfb.bgn.service.DateService.STANDARD_DATE_FORMAT;
 
 @Service
 public class ImportService {
@@ -50,8 +50,13 @@ public class ImportService {
     playsToBeInserted.stream()
         .forEach(
             playToBeInserted -> {
-              this.playRespository.save(
-                  createPlayFromBgStatsPlay(playToBeInserted, registeredGames, registeredPlayers));
+              try {
+                this.playRespository.save(
+                    createPlayFromBgStatsPlay(
+                        playToBeInserted, registeredGames, registeredPlayers));
+              } catch (ParseException e) {
+                e.printStackTrace();
+              }
               numPlaysInserted.getAndSet(numPlaysInserted.get() + 1);
             });
     return new ResponseDto(
@@ -59,11 +64,11 @@ public class ImportService {
   }
 
   private Play createPlayFromBgStatsPlay(
-      BgStatsPlayDto playToBeInserted, List<Game> registeredGames, List<Player> registeredPlayers) {
+      BgStatsPlayDto playToBeInserted, List<Game> registeredGames, List<Player> registeredPlayers)
+      throws ParseException {
     Play play =
         new Play(
-            BGN_DATE_FORMAT.format(
-                LocalDate.parse(playToBeInserted.getPlayDate(), BG_STATS_DATE_FORMAT)),
+            new Date(STANDARD_DATE_FORMAT.parse(playToBeInserted.getPlayDate()).getTime()),
             registeredGames.stream()
                 .filter(
                     registeredGame ->
@@ -82,7 +87,8 @@ public class ImportService {
                                     player -> playerScore.getPlayerName().equals(player.getName()))
                                 .findFirst()
                                 .orElse(null)),
-                        getScoreFromBgStatsScore(playerScore.getScore())))
+                        getScoreFromBgStatsScore(playerScore.getScore()),
+                        playerScore.isWinner()))
             .collect(Collectors.toList()));
     return play;
   }

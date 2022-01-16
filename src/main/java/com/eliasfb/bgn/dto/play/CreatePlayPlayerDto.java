@@ -8,4 +8,5 @@ import lombok.Data;
 public class CreatePlayPlayerDto {
   private int playerId;
   private int score;
+  private boolean isWinner;
 }

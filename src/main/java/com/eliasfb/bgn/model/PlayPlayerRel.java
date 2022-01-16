@@ -20,7 +20,9 @@ public class PlayPlayerRel {
 
   @EmbeddedId private PlayPlayerRelId id;
 
-  private int score;
+  @Column private int score;
+
+  @Column private boolean winner;
 
   @Override
   public boolean equals(Object o) {
@@ -35,5 +37,9 @@ public class PlayPlayerRel {
   @Override
   public int hashCode() {
     return Objects.hash(id, score);
+  }
+
+  public PlayPlayerRel(boolean winner) {
+    this.winner = winner;
   }
 }

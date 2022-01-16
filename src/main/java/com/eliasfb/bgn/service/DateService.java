@@ -1,10 +1,7 @@
 package com.eliasfb.bgn.service;
 
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 
 public class DateService {
-
-  public static final DateTimeFormatter BGN_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-  public static final DateTimeFormatter BG_STATS_DATE_FORMAT =
-      DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+  public static final SimpleDateFormat STANDARD_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 }

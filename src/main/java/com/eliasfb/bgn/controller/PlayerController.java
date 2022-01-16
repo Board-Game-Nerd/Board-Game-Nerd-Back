@@ -2,6 +2,7 @@ package com.eliasfb.bgn.controller;
 
 import com.eliasfb.bgn.dto.ResponseDto;
 import com.eliasfb.bgn.dto.player.CreatePlayerDto;
+import com.eliasfb.bgn.dto.player.PlayerDetailDto;
 import com.eliasfb.bgn.dto.player.PlayerDto;
 import com.eliasfb.bgn.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class PlayerController {
   @GetMapping
   public List<PlayerDto> findAll() {
     return this.service.findAll();
+  }
+
+  @GetMapping(path = {"/{id}"})
+  public PlayerDetailDto findById(@PathVariable("id") int id) {
+    return this.service.findById(id);
   }
 
   @PostMapping

@@ -17,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(
     exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
 @NoArgsConstructor
-public class Game implements Serializable {
+public class Game implements Serializable, Comparable {
   @Id
   @Column
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,5 +79,13 @@ public class Game implements Serializable {
 
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);
+  }
+
+  @Override
+  public int compareTo(Object o) {
+    if (o instanceof Game) {
+      return this.id.compareTo(((Game) o).id);
+    }
+    return -1;
   }
 }

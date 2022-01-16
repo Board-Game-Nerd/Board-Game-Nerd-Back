@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "play")
 @Data
-@ToString(exclude = {"game"})
-@EqualsAndHashCode(exclude = {"game"})
+@ToString(exclude = {"game", "players"})
+@EqualsAndHashCode(exclude = {"game", "players"})
 @NoArgsConstructor
 public class Play {
   @Id
@@ -21,9 +22,9 @@ public class Play {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column private String date;
+  @Column private Date date;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "game_id")
   @JsonIgnore
   private Game game;
@@ -33,7 +34,7 @@ public class Play {
       cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
   private List<PlayPlayerRel> players;
 
-  public Play(String date, Game game) {
+  public Play(Date date, Game game) {
     this.date = date;
     this.game = game;
   }

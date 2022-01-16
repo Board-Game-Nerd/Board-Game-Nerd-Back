@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class PlayPlayerDto {
   private PlayerDto player;
   private Integer score;
+  private boolean winner;
 }

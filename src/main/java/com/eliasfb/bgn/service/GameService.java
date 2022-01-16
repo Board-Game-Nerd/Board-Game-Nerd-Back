@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.eliasfb.bgn.mapper.GameMapper.BACKEND_HOST;
+
 @Service
 public class GameService {
   @Autowired private GameRepository repository;
@@ -83,5 +85,12 @@ public class GameService {
     score.setValue(value);
     this.scoreRepository.save(score);
     return this.repository.findById(gameId).getAverageScore();
+  }
+
+  public static String getFirstImageUrl(Game game) {
+    return game.getImages().stream()
+        .map(g -> BACKEND_HOST + "/images/" + g.getName())
+        .findFirst()
+        .orElse(null);
   }
 }

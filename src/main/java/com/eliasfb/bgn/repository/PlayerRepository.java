@@ -11,5 +11,7 @@ public interface PlayerRepository extends Repository<Player, Integer> {
 
   List<Player> findAll();
 
+  Player findById(Integer id);
+
   void save(Player player);
 }

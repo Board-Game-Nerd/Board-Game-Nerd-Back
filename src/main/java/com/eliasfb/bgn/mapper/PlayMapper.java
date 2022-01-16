@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.eliasfb.bgn.mapper.GameMapper.BACKEND_HOST;
+import static com.eliasfb.bgn.service.DateService.STANDARD_DATE_FORMAT;
 
 @Mapper(componentModel = "spring")
 public abstract class PlayMapper {
@@ -27,6 +28,7 @@ public abstract class PlayMapper {
   }
 
   @Mapping(source = "players", target = "players", ignore = true)
+  @Mapping(source = "date", target = "date", ignore = true)
   abstract PlayDto basicPlayToPlayDto(Play play);
 
   public PlayDto playToPlayDto(Play play) {
@@ -37,7 +39,8 @@ public abstract class PlayMapper {
                 player ->
                     new PlayPlayerDto(
                         this.playerMapper.playerToPlayerDto(player.getId().getPlayer()),
-                        player.getScore()))
+                        player.getScore(),
+                        player.isWinner()))
             .collect(Collectors.toList()));
     playDto.setGame(new BasicGameDto());
     playDto.getGame().setName(play.getGame().getName());
@@ -48,6 +51,7 @@ public abstract class PlayMapper {
                 .map(g -> BACKEND_HOST + "/images/" + g.getName())
                 .findFirst()
                 .orElse(null));
+    playDto.setDate(STANDARD_DATE_FORMAT.format(play.getDate()));
     return playDto;
   }
 
@@ -61,7 +65,8 @@ public abstract class PlayMapper {
                 player ->
                     new PlayPlayerRel(
                         new PlayPlayerRelId(play, new Player(player.getPlayerId())),
-                        player.getScore()))
+                        player.getScore(),
+                        player.isWinner()))
             .collect(Collectors.toList()));
     return play;
   }

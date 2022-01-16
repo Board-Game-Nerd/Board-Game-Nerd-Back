@@ -7,4 +7,5 @@ public class BgStatsPlayerScoreDto {
   private String score;
   private Integer playerRefId;
   private String playerName;
+  private boolean winner;
 }
