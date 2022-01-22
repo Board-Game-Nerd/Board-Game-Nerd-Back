@@ -18,26 +18,26 @@ public class PlayerServiceTest {
     List<PlayPlayerRel> playerPlays = new ArrayList<>();
     playerPlays.add(new PlayPlayerRel(true));
     playerPlays.add(new PlayPlayerRel(false));
-    Double winPercentage = playerService.getTotalWinPercentage(playerPlays);
+    Double winPercentage = playerService.getWinPercentage(playerPlays);
     // 100 percent
     assertEquals(winPercentage, Double.valueOf(50));
     playerPlays = new ArrayList<>();
     playerPlays.add(new PlayPlayerRel(true));
     playerPlays.add(new PlayPlayerRel(true));
-    winPercentage = playerService.getTotalWinPercentage(playerPlays);
+    winPercentage = playerService.getWinPercentage(playerPlays);
     assertEquals(winPercentage, Double.valueOf(100));
     // 0 percent
     playerPlays = new ArrayList<>();
     playerPlays.add(new PlayPlayerRel(false));
     playerPlays.add(new PlayPlayerRel(false));
-    winPercentage = playerService.getTotalWinPercentage(playerPlays);
+    winPercentage = playerService.getWinPercentage(playerPlays);
     assertEquals(winPercentage, Double.valueOf(0));
     // 33.33 percent
     playerPlays = new ArrayList<>();
     playerPlays.add(new PlayPlayerRel(true));
     playerPlays.add(new PlayPlayerRel(false));
     playerPlays.add(new PlayPlayerRel(false));
-    winPercentage = playerService.getTotalWinPercentage(playerPlays);
+    winPercentage = playerService.getWinPercentage(playerPlays);
     assertEquals(winPercentage, Double.valueOf(33.33));
   }
 }

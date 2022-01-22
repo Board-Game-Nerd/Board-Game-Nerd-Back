@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BasicGameDto {
+  private Integer id;
   private String name;
   private String imageUrl;
 }

@@ -160,7 +160,7 @@ public class ImportService {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     BgStatsDto dto =
-        objectMapper.readValue(new File("src/main/resources/bgStatsData.json"), BgStatsDto.class);
+        objectMapper.readValue(new File("src/main/resources/BGStatsExport.json"), BgStatsDto.class);
     return fillBgStatsDtoWithPlayerNames(fillBgStatsDtoWithGameNames(dto));
   }
 

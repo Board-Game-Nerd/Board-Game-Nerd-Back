@@ -29,6 +29,11 @@ public class Player {
       cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
   private List<PlayPlayerRel> plays;
 
+  @OneToMany(
+      mappedBy = "id.player",
+      cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
+  private List<PlayerGroupPlayerRel> playerGroups;
+
   public Player(Integer id) {
     this.id = id;
   }

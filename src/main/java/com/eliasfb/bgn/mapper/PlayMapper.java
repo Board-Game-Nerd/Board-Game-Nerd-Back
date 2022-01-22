@@ -40,6 +40,7 @@ public abstract class PlayMapper {
                         player.isWinner()))
             .collect(Collectors.toList()));
     playDto.setGame(new BasicGameDto());
+    playDto.getGame().setId(play.getGame().getId());
     playDto.getGame().setName(play.getGame().getName());
     playDto
         .getGame()
@@ -62,12 +63,13 @@ public abstract class PlayMapper {
         play.getPlayers().stream()
             .map(
                 player ->
-                    new PlayPlayerDto(
+                    new PlayDetailPlayerDto(
                         this.playerMapper.playerToPlayerDto(player.getId().getPlayer()),
                         player.getScore(),
                         player.isWinner()))
             .collect(Collectors.toList()));
     playDetailDto.setGame(new BasicGameDto());
+    playDetailDto.getGame().setId(play.getGame().getId());
     playDetailDto.getGame().setName(play.getGame().getName());
     playDetailDto
         .getGame()

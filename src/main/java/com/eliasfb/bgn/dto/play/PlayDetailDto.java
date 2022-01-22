@@ -12,6 +12,6 @@ import java.util.List;
 public class PlayDetailDto {
   private int id;
   private String date;
-  private List<PlayPlayerDto> players;
+  private List<PlayDetailPlayerDto> players;
   private BasicGameDto game;
 }

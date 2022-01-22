@@ -4,6 +4,7 @@ import com.eliasfb.bgn.dto.ResponseDto;
 import com.eliasfb.bgn.dto.player.CreatePlayerDto;
 import com.eliasfb.bgn.dto.player.PlayerDetailDto;
 import com.eliasfb.bgn.dto.player.PlayerDto;
+import com.eliasfb.bgn.dto.player.group.PlayerGroupDto;
 import com.eliasfb.bgn.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,11 @@ public class PlayerController {
   @GetMapping
   public List<PlayerDto> findAll() {
     return this.service.findAll();
+  }
+
+  @GetMapping(path = {"/groups"})
+  public List<PlayerGroupDto> findAllPlayerGroups() {
+    return this.service.findAllPlayerGroups();
   }
 
   @GetMapping(path = {"/{id}"})
