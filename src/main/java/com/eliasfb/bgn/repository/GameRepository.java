@@ -1,7 +1,6 @@
 package com.eliasfb.bgn.repository;
 
 import com.eliasfb.bgn.model.Game;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -13,9 +12,9 @@ public interface GameRepository extends Repository<Game, Integer> {
 
   Game findById(Integer id);
 
-  List<Game> findAll();
+  List<Game> findAllByOwned(boolean owned);
 
-  List<Game> findAll(Sort sort);
+  List<Game> findAll();
 
   Game save(Game game);
 

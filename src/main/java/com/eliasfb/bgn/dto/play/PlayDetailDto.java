@@ -14,4 +14,5 @@ public class PlayDetailDto {
   private String date;
   private List<PlayDetailPlayerDto> players;
   private BasicGameDto game;
+  private boolean scorable;
 }

@@ -20,9 +20,10 @@ public class ImportController {
   @PostMapping()
   public ResponseDto importAll() {
     try {
-      ResponseDto response = this.service.importPlayers();
-      response.setMessage(response.getMessage() + " / " + this.service.importPlays().getMessage());
-      return response;
+      String finalMessage = this.service.importPlayers().getMessage();
+      finalMessage += " / " + this.service.importGames().getMessage();
+      finalMessage += " / " + this.service.importPlays().getMessage();
+      return new ResponseDto(ResponseDto.OK_CODE, finalMessage);
     } catch (IOException e) {
       e.printStackTrace();
       return new ResponseDto(-1, e.toString());
@@ -33,6 +34,16 @@ public class ImportController {
   public ResponseDto importPlayers() {
     try {
       return this.service.importPlayers();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return new ResponseDto(-1, e.toString());
+    }
+  }
+
+  @PostMapping(path = {"/games"})
+  public ResponseDto importGames() {
+    try {
+      return this.service.importGames();
     } catch (IOException e) {
       e.printStackTrace();
       return new ResponseDto(-1, e.toString());

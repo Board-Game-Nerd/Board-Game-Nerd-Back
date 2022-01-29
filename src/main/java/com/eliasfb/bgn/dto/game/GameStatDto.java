@@ -1,11 +1,9 @@
 package com.eliasfb.bgn.dto.game;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 public class GameStatDto {
   private Integer gameId;

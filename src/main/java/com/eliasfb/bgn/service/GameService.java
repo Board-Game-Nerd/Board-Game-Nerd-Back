@@ -15,7 +15,6 @@ import com.eliasfb.bgn.repository.ImageRepository;
 import com.eliasfb.bgn.repository.LocationRepository;
 import com.eliasfb.bgn.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -37,12 +36,16 @@ public class GameService {
       Arrays.asList("Temática", "Mecánicas", "Arte", "Originalidad");
 
   public List<GameDto> findAll() {
-    return this.mapper.gameToGameDtoList(
-        this.repository.findAll(Sort.by(Sort.DEFAULT_DIRECTION, "name")));
+    List<GameDto> games = this.mapper.gameToGameDtoList(this.repository.findAllByOwned(true));
+    return games.stream()
+        .sorted((g1, g2) -> g2.getNumPlays().compareTo(g1.getNumPlays()))
+        .collect(Collectors.toList());
   }
 
   public List<Integer> findIds() {
-    return this.repository.findAll().stream().map(g -> g.getId()).collect(Collectors.toList());
+    return this.repository.findAllByOwned(true).stream()
+        .map(g -> g.getId())
+        .collect(Collectors.toList());
   }
 
   public GameDetailDto findById(Integer id) {

@@ -34,7 +34,12 @@ public class PlayerController {
 
   @GetMapping(path = {"/{id}"})
   public PlayerDetailDto findById(@PathVariable("id") int id) {
-    return this.service.findById(id);
+    try {
+      return this.service.findById(id);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @PostMapping

@@ -1,10 +1,7 @@
 package com.eliasfb.bgn.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +13,8 @@ import java.util.List;
 @ToString(exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
 @EqualsAndHashCode(
     exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Game implements Serializable, Comparable {
   @Id
@@ -67,6 +66,10 @@ public class Game implements Serializable, Comparable {
   @Column private String featuresDisabled;
 
   @Column private boolean isFavorite;
+
+  @Column private boolean owned;
+
+  @Column private boolean scorable;
 
   @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore

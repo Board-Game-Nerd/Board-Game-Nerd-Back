@@ -1,13 +1,11 @@
 package com.eliasfb.bgn.dto.game;
 
 import com.eliasfb.bgn.dto.master.MasterDto;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GameDto {
   private Integer id;
   private String name;
@@ -23,4 +21,5 @@ public class GameDto {
   private Double avgScore;
   private List<String> featuresDisabled;
   private boolean isFavorite;
+  private Integer numPlays;
 }

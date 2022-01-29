@@ -58,8 +58,12 @@ public class PlayService {
                               playPlayerRel.getId().getPlayer().getPlays(), gamePlayed);
                       return new PlayerGameStats(
                           this.playerService.getWinPercentage(playerPlaysOfGame),
-                          this.playerService.getMaxScore(playerPlaysOfGame),
-                          this.playerService.getAvgScore(playerPlaysOfGame));
+                          gamePlayed.isScorable()
+                              ? this.playerService.getMaxScore(playerPlaysOfGame)
+                              : null,
+                          gamePlayed.isScorable()
+                              ? this.playerService.getAvgScore(playerPlaysOfGame)
+                              : null);
                     }));
     PlayDetailDto playDetailDto = this.mapper.playToPlayDetailDto(play);
     playDetailDto

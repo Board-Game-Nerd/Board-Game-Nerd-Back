@@ -2,11 +2,13 @@ package com.eliasfb.bgn.service;
 
 import com.eliasfb.bgn.dto.ResponseDto;
 import com.eliasfb.bgn.dto.bgstats.BgStatsDto;
+import com.eliasfb.bgn.dto.bgstats.BgStatsGameDto;
 import com.eliasfb.bgn.dto.bgstats.BgStatsPlayDto;
 import com.eliasfb.bgn.model.*;
 import com.eliasfb.bgn.repository.GameRepository;
 import com.eliasfb.bgn.repository.PlayRepository;
 import com.eliasfb.bgn.repository.PlayerRepository;
+import com.eliasfb.bgn.repository.VictoryRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -34,6 +37,52 @@ public class ImportService {
 
   @Autowired GameRepository gameRepository;
 
+  @Autowired VictoryRepository victoryRepository;
+
+  @Transactional
+  public ResponseDto importGames() throws IOException {
+    List<Victory> victories = victoryRepository.findAll();
+    Victory competitiveVictory =
+        victories.stream()
+            .filter(victory -> "Competitivo".equals(victory.getName()))
+            .findFirst()
+            .orElse(null);
+    Victory cooperativeVictory =
+        victories.stream()
+            .filter(victory -> "Cooperativo".equals(victory.getName()))
+            .findFirst()
+            .orElse(null);
+    AtomicReference<Integer> numGamesInserted = new AtomicReference<>(0);
+    Set<String> registeredGameOfficialNames =
+        this.gameRepository.findAll().stream()
+            .map(game -> game.getOfficialName())
+            .collect(Collectors.toSet());
+    BgStatsDto dto = getBgStatsDtoFromFile();
+    List<BgStatsGameDto> newGames =
+        dto.getGames().stream()
+            .filter(game -> !registeredGameOfficialNames.contains(game.getName()))
+            .collect(Collectors.toList());
+    newGames.stream()
+        .map(
+            bgGame ->
+                Game.builder()
+                    .name(bgGame.getName())
+                    .officialName(bgGame.getName())
+                    .minPlayers(bgGame.getMinPlayerCount())
+                    .maxPlayers(bgGame.getMaxPlayerCount())
+                    .victory(bgGame.isCooperative() ? cooperativeVictory : competitiveVictory)
+                    .owned(false)
+                    .scorable(!bgGame.isNoPoints())
+                    .build())
+        .forEach(
+            game -> {
+              this.gameRepository.save(game);
+              numGamesInserted.getAndSet(numGamesInserted.get() + 1);
+            });
+    return new ResponseDto(
+        ResponseDto.OK_CODE, numGamesInserted.get() + " games imported successfully");
+  }
+
   @Transactional
   public ResponseDto importPlays() throws IOException {
     AtomicReference<Integer> numPlaysInserted = new AtomicReference<>(0);
@@ -42,11 +91,8 @@ public class ImportService {
     List<Play> registeredPlays = this.playRespository.findAll();
     List<Game> registeredGames = this.gameRepository.findAll();
     // We need to first obtain the plays to be inserted : Plays that don't already exist on the DB
-    // and that reference a game on the collection
-    List<BgStatsPlayDto> playsFromRegisteredGames =
-        getPlaysFromRegisteredGames(dto, registeredGames);
     List<BgStatsPlayDto> playsToBeInserted =
-        getPlaysToBeInserted(playsFromRegisteredGames, registeredPlays);
+        getNewPlaysToBeInserted(dto.getPlays(), registeredPlays);
     playsToBeInserted.stream()
         .forEach(
             playToBeInserted -> {
@@ -120,7 +166,7 @@ public class ImportService {
     }
   }
 
-  private List<BgStatsPlayDto> getPlaysToBeInserted(
+  private List<BgStatsPlayDto> getNewPlaysToBeInserted(
       List<BgStatsPlayDto> playsFromRegisteredGames, List<Play> registeredPlays) {
     try {
       return playsFromRegisteredGames.stream()

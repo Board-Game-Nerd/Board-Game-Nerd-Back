@@ -55,6 +55,7 @@ public abstract class PlayMapper {
 
   @Mapping(source = "players", target = "players", ignore = true)
   @Mapping(source = "date", target = "date", ignore = true)
+  @Mapping(source = "game.scorable", target = "scorable")
   abstract PlayDetailDto basicPlayToPlayDetailDto(Play play);
 
   public PlayDetailDto playToPlayDetailDto(Play play) {

@@ -41,6 +41,7 @@ public interface GameMapper {
     if (!StringUtils.isEmptyOrWhitespaceOnly(game.getFeaturesDisabled())) {
       gameDto.setFeaturesDisabled(Arrays.asList(game.getFeaturesDisabled().split(",")));
     }
+    gameDto.setNumPlays(game.getPlays().size());
     return gameDto;
   }
 
