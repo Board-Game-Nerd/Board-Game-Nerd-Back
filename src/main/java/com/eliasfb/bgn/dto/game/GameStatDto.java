@@ -2,9 +2,11 @@ package com.eliasfb.bgn.dto.game;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class GameStatDto {
   private Integer gameId;
   private String gameName;
