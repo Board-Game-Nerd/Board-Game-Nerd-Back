@@ -1,4 +1,156 @@
 {
+  "tags": [],
+  "groups": [
+    {
+      "uuid": "fb9860ab-f95a-47fe-9ae3-3eaa841dcc7e",
+      "id": 1,
+      "name": "All Games",
+      "type": "Basis",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18"
+    },
+    {
+      "uuid": "11ccf471-4a24-421f-8ff6-7377d00e0a04",
+      "id": 13,
+      "name": "Custom Filter…",
+      "type": "Basis",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"filter\":{\"gameType\":0,\"collectionRules\":[],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "fa0f85ca-bc8d-484a-8e50-c69eb659151a",
+      "id": 14,
+      "name": "Expansions played as Base",
+      "type": "GameFilter",
+      "isInternal": false,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":5,\"filter\":{\"gameType\":3,\"collectionRules\":[],\"tagRules\":[],\"playRules\":[{\"ruleType\":0,\"countPlays\":0,\"withPlayerAnd\":0,\"withPlayerExact\":0,\"excludeExpansionPlays\":1,\"withPlayerUuids\":[]}]}}"
+    },
+    {
+      "uuid": "b1c1626f-ea52-4a9b-8cf3-61bcc277ef8f",
+      "id": 15,
+      "name": "Expansions played as Base",
+      "type": "GameFilter",
+      "isInternal": false,
+      "isDefault": true,
+      "modificationDate": "2021-10-09 16:43:30",
+      "metaData": "{\"ordering\":5,\"filter\":{\"gameType\":3,\"collectionRules\":[],\"tagRules\":[],\"playRules\":[{\"ruleType\":0,\"countPlays\":0,\"withPlayerAnd\":0,\"withPlayerExact\":0,\"excludeExpansionPlays\":1,\"withPlayerUuids\":[]}]}}"
+    },
+    {
+      "uuid": "d2d600cd-e295-431c-8dd6-fece3bb64e49",
+      "id": 8,
+      "name": "For Trade",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":7,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":1,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "76d326d3-01ed-417c-96fd-e8f525eda9d4",
+      "id": 2,
+      "name": "Owned Games",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":1,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":1,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "c33f7e43-09f4-46ea-9e57-220a6980f5b1",
+      "id": 10,
+      "name": "Played Games",
+      "type": "GameFilter",
+      "isInternal": false,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"filter\":{\"gameType\":0,\"collectionRules\":[],\"tagRules\":[],\"playRules\":[{\"ruleType\":0,\"countPlays\":0,\"withPlayerAnd\":0,\"withPlayerExact\":0,\"excludeExpansionPlays\":0,\"withPlayerUuids\":[]}]}}"
+    },
+    {
+      "uuid": "ec7f57d3-1a1a-4c10-af03-ee0c425487e0",
+      "id": 12,
+      "name": "Played, not Owned",
+      "type": "GameFilter",
+      "isInternal": false,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":1,\"noStatus\":0,\"statusOwned\":1,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[{\"ruleType\":0,\"countPlays\":0,\"withPlayerAnd\":0,\"withPlayerExact\":0,\"excludeExpansionPlays\":0,\"withPlayerUuids\":[]}]}}"
+    },
+    {
+      "uuid": "267c8b61-6378-4249-9a32-d41346677526",
+      "id": 6,
+      "name": "Preordered",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":5,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":1,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "7a5d227a-a2f5-49fe-bc77-6f78a9e0aac1",
+      "id": 9,
+      "name": "Previously Owned",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":8,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":1,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "03fed182-73c4-4940-ad80-746911bfc416",
+      "id": 11,
+      "name": "Unplayed Owned Games",
+      "type": "GameFilter",
+      "isInternal": false,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":1,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[{\"ruleType\":1,\"countPlays\":0,\"withPlayerAnd\":0,\"withPlayerExact\":0,\"excludeExpansionPlays\":0,\"withPlayerUuids\":[]}]}}"
+    },
+    {
+      "uuid": "e97d4e5d-2ad5-4def-8ab1-707efc3ca38a",
+      "id": 7,
+      "name": "Want in Trade",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":6,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":1,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "a548d494-b2a9-4b2a-b653-b60c1e00d61d",
+      "id": 5,
+      "name": "Want to Buy",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":4,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":0,\"statusWantToBuy\":1,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "d9966e2b-cdf3-4aa4-806c-9a282dae9b6e",
+      "id": 4,
+      "name": "Want to Play",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":3,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":0,\"statusWantToPlay\":1,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    },
+    {
+      "uuid": "faaf0e20-d660-4549-81ac-250c959b6344",
+      "id": 3,
+      "name": "Wishlist",
+      "type": "Collection",
+      "isInternal": true,
+      "isDefault": true,
+      "modificationDate": "2021-12-04 15:34:18",
+      "metaData": "{\"ordering\":2,\"filter\":{\"gameType\":0,\"collectionRules\":[{\"negation\":0,\"noStatus\":0,\"statusOwned\":0,\"statusWishlist\":1,\"statusWantToPlay\":0,\"statusWantToBuy\":0,\"statusPreordered\":0,\"statusWantInTrade\":0,\"statusForTrade\":0,\"statusPreviouslyOwned\":0,\"selectedWishlistStatuses\":[]}],\"tagRules\":[],\"playRules\":[]}}"
+    }
+  ],
   "players": [
     {
       "uuid": "315e4077-484b-4a6f-9297-6bfa2e5f7a5f",
@@ -583,6 +735,128 @@
       "isAnonymous": false,
       "modificationDate": "2019-01-24 02:06:06",
       "bggUsername": ""
+    }
+  ],
+  "locations": [
+    {
+      "uuid": "7cbf3fc7-23d3-4822-8f53-a516c747fafa",
+      "id": 1,
+      "name": "A Cova Celtica",
+      "modificationDate": "2019-09-28 19:23:46"
+    },
+    {
+      "uuid": "3308c831-fc9b-49e1-ac93-d80117a677bd",
+      "id": 2,
+      "name": "ApartamentoCastropol",
+      "modificationDate": "2019-06-29 19:22:53"
+    },
+    {
+      "uuid": "273fb120-f147-4d85-9c37-fcc41db99340",
+      "id": 3,
+      "name": "Bar 13 Coruña",
+      "modificationDate": "2019-01-12 08:12:14"
+    },
+    {
+      "uuid": "5ca23350-9c9b-417c-80d7-4947385c7eca",
+      "id": 4,
+      "name": "Canarias",
+      "modificationDate": "2021-09-28 15:20:19"
+    },
+    {
+      "uuid": "34fce570-25f1-41a1-888c-f3d3ea80342a",
+      "id": 5,
+      "name": "Casa De esther Aviles",
+      "modificationDate": "2018-12-30 13:24:59"
+    },
+    {
+      "uuid": "d61d0d43-9dde-4dff-82d1-57174a355633",
+      "id": 6,
+      "name": "Casa De Ferrol",
+      "modificationDate": "2018-12-25 08:27:00"
+    },
+    {
+      "uuid": "3f595468-7fcd-4fcf-8a5b-de521db9ac9a",
+      "id": 7,
+      "name": "Casa De Noe Aviles",
+      "modificationDate": "2019-01-02 12:27:53"
+    },
+    {
+      "uuid": "0a38646b-78ca-49f3-9019-28708e455a05",
+      "id": 8,
+      "name": "Casa De samu",
+      "modificationDate": "2018-12-25 08:28:26"
+    },
+    {
+      "uuid": "75a06a80-bd3f-47ce-a4ba-316e0c2f2fbc",
+      "id": 9,
+      "name": "Herdeiros De Urza",
+      "modificationDate": "2019-03-31 05:47:07"
+    },
+    {
+      "uuid": "fbf52b28-5a36-4340-b6a1-67c451b5fb38",
+      "id": 10,
+      "name": "La Orden Del Cisne",
+      "modificationDate": "2018-11-02 18:25:20"
+    },
+    {
+      "uuid": "d3777963-8a18-473d-bd1e-c2c23e6f4517",
+      "id": 11,
+      "name": "La Pato Cueva",
+      "modificationDate": "2020-01-03 16:51:47"
+    },
+    {
+      "uuid": "7f71a7e6-35f8-4eb4-93d4-e09b2b90b19d",
+      "id": 12,
+      "name": "Mi Piso",
+      "modificationDate": "2018-10-07 07:24:12"
+    },
+    {
+      "uuid": "f076f93c-2749-4b2a-a77f-d5ae32fb4037",
+      "id": 13,
+      "name": "Online",
+      "modificationDate": "2019-05-15 03:30:25"
+    },
+    {
+      "uuid": "fad5f92e-a9dc-46a5-90e6-76684a3cba3b",
+      "id": 14,
+      "name": "Pedroso",
+      "modificationDate": "2020-07-19 11:31:03"
+    },
+    {
+      "uuid": "b38a0e8d-169b-4290-bad7-42df006f9eef",
+      "id": 15,
+      "name": "Piso Franco",
+      "modificationDate": "2019-09-28 19:28:06"
+    },
+    {
+      "uuid": "24c9d076-1714-42a3-bfb0-239535ec6766",
+      "id": 16,
+      "name": "Piso Papá",
+      "modificationDate": "2019-12-25 14:51:22"
+    },
+    {
+      "uuid": "d0120a3f-f59f-4fbd-8dc0-8da46b7f2ef8",
+      "id": 17,
+      "name": "PisoCarlos",
+      "modificationDate": "2020-08-11 19:04:21"
+    },
+    {
+      "uuid": "f1f572d1-de93-4ae4-9b47-56f729ec7f1a",
+      "id": 18,
+      "name": "PisoChukyGonzalo",
+      "modificationDate": "2020-03-07 13:26:03"
+    },
+    {
+      "uuid": "60d30c1f-20c5-4673-b1c3-9163cd64fbb6",
+      "id": 19,
+      "name": "PisoLaura",
+      "modificationDate": "2021-10-05 10:32:33"
+    },
+    {
+      "uuid": "10996969-a368-4a22-a9b6-80f9c6e42244",
+      "id": 20,
+      "name": "Sector7",
+      "modificationDate": "2019-03-29 12:57:04"
     }
   ],
   "games": [
@@ -59413,6 +59687,1076 @@
           "newPlayer": false,
           "startPlayer": false,
           "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "7a5810b9-5762-4905-840c-9a2551851b0d",
+      "modificationDate": "2022-01-29 21:01:56",
+      "entryDate": "2022-01-29 21:01:38",
+      "playDate": "2022-01-29 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 15,
+      "gameRefId": 12,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 66,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "d3de5386-915c-494b-801c-248f38eb5ef5",
+      "modificationDate": "2022-02-02 21:07:54",
+      "entryDate": "2022-02-02 21:07:44",
+      "playDate": "2022-02-02 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 12,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 59,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "a301231c-3fd6-4896-afb0-712b2c97ac58",
+      "modificationDate": "2022-02-05 16:34:16",
+      "entryDate": "2022-02-05 16:33:49",
+      "playDate": "2022-02-05 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 11,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": true,
+          "startPlayer": false,
+          "playerRefId": 13,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": true,
+          "startPlayer": false,
+          "playerRefId": 59,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "dbc6d828-19c5-4d55-8f71-8049a8a90247",
+      "modificationDate": "2022-02-07 20:45:20",
+      "entryDate": "2022-02-07 20:45:09",
+      "playDate": "2022-02-07 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 47,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "c8741a1d-6015-4610-8909-0e4819659fa1",
+      "modificationDate": "2022-02-07 22:25:12",
+      "entryDate": "2022-02-07 22:25:05",
+      "playDate": "2022-02-07 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 47,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "54673152-ced7-4078-942d-6bdab1bc95b9",
+      "modificationDate": "2022-02-13 20:23:57",
+      "entryDate": "2022-02-13 18:49:28",
+      "playDate": "2022-02-13 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 52,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": true,
+          "startPlayer": false,
+          "playerRefId": 24,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": true,
+          "startPlayer": false,
+          "playerRefId": 46,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "5fdb22f0-d0f4-4fff-8269-27b956996fe1",
+      "modificationDate": "2022-02-13 22:13:29",
+      "entryDate": "2022-02-13 22:13:18",
+      "playDate": "2022-02-13 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "dc1d2da8-84d7-4a93-8eda-b1493a2b0254",
+      "modificationDate": "2022-02-16 20:57:39",
+      "entryDate": "2022-02-16 20:57:25",
+      "playDate": "2022-02-16 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 12,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 59,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "2778edb7-d00d-4252-a736-9e9a56fa5689",
+      "modificationDate": "2022-02-17 00:02:19",
+      "entryDate": "2022-02-17 00:02:05",
+      "playDate": "2022-02-17 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "e0bb5556-f331-4b48-ae3d-59feb93b1cf3",
+      "modificationDate": "2022-02-21 22:21:13",
+      "entryDate": "2022-02-21 22:20:55",
+      "playDate": "2022-02-21 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 12,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 59,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "138dd989-ee8f-488e-a728-1bbbe7f4e716",
+      "modificationDate": "2022-02-21 22:51:32",
+      "entryDate": "2022-02-21 22:21:16",
+      "playDate": "2022-02-21 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 6,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 25,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "39",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "91dfb3cc-a47b-43db-9fe6-3a61ce3cc49c",
+      "modificationDate": "2022-02-25 17:47:25",
+      "entryDate": "2022-02-25 17:47:08",
+      "playDate": "2022-02-25 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": true,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "7fbb987e-d397-474e-af58-af3214ae334c",
+      "modificationDate": "2022-02-25 19:50:27",
+      "entryDate": "2022-02-25 19:50:06",
+      "playDate": "2022-02-25 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 35,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "6",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "3",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "48f6f3fa-28f3-4d3b-9073-d46ab082a41a",
+      "modificationDate": "2022-02-25 20:23:48",
+      "entryDate": "2022-02-25 20:23:36",
+      "playDate": "2022-02-25 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 35,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "6",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "5",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "c5d89c96-501d-4367-bb7a-0255d96181a9",
+      "modificationDate": "2022-02-25 20:43:27",
+      "entryDate": "2022-02-25 20:43:11",
+      "playDate": "2022-02-25 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 35,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "6",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "2",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "3b90c761-81f5-4b3f-ba10-667a057a6fd8",
+      "modificationDate": "2022-02-25 21:14:03",
+      "entryDate": "2022-02-25 21:13:28",
+      "playDate": "2022-02-25 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 35,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "5",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "6",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "1924bf09-1a5e-423f-aaf0-80d29293b743",
+      "modificationDate": "2022-02-26 13:52:10",
+      "entryDate": "2022-02-26 13:52:08",
+      "playDate": "2022-02-26 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "d1ea8299-9964-4eae-a0b1-d086fab01b49",
+      "modificationDate": "2022-02-26 19:46:39",
+      "entryDate": "2022-02-26 19:46:30",
+      "playDate": "2022-02-26 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 47,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "a51bb6c2-fee7-4405-9196-bb759c530a69",
+      "modificationDate": "2022-02-26 21:24:30",
+      "entryDate": "2022-02-26 21:23:58",
+      "playDate": "2022-02-26 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 51,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "23",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "6",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "2",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "7",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "b9ce77c9-fc3e-40b2-9217-55dd7cde8e79",
+      "modificationDate": "2022-02-27 00:33:14",
+      "entryDate": "2022-02-27 00:32:48",
+      "playDate": "2022-02-27 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": false,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 115,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": "87",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0,
+          "team": "0"
+        },
+        {
+          "score": "91",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 23,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0,
+          "team": "0"
+        },
+        {
+          "score": "94",
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 31,
+          "rank": 0,
+          "seatOrder": 0
+        },
+        {
+          "score": "73",
+          "winner": false,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "rank": 0,
+          "seatOrder": 0
+        }
+      ],
+      "expansionPlays": []
+    },
+    {
+      "uuid": "65a311a1-fabd-47d3-adda-961394110402",
+      "modificationDate": "2022-02-27 11:22:22",
+      "entryDate": "2022-02-27 11:22:09",
+      "playDate": "2022-02-27 10:00:00",
+      "usesTeams": false,
+      "durationMin": 0,
+      "ignored": false,
+      "manualWinner": true,
+      "rounds": 0,
+      "bggId": 0,
+      "locationRefId": 12,
+      "gameRefId": 122,
+      "board": "",
+      "rating": 0,
+      "nemestatsId": 0,
+      "scoringSetting": 0,
+      "metaData": "{\"playUsedGameCopy\":0}",
+      "playerScores": [
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 21,
+          "role": "",
+          "rank": 0,
+          "seatOrder": 0,
+          "team": "0"
+        },
+        {
+          "score": null,
+          "winner": true,
+          "newPlayer": false,
+          "startPlayer": false,
+          "playerRefId": 42,
+          "role": "",
           "rank": 0,
           "seatOrder": 0
         }

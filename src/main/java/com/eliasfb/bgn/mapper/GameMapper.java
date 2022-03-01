@@ -42,6 +42,12 @@ public interface GameMapper {
       gameDto.setFeaturesDisabled(Arrays.asList(game.getFeaturesDisabled().split(",")));
     }
     gameDto.setNumPlays(game.getPlays().size());
+    gameDto.setPlayedBy(
+        game.getPlays().stream()
+            .flatMap(play -> play.getPlayers().stream())
+            .map(playPlayerRel -> playPlayerRel.getId().getPlayer().getName())
+            .distinct()
+            .collect(Collectors.toList()));
     return gameDto;
   }
 

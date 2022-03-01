@@ -22,4 +22,5 @@ public class GameDto {
   private List<String> featuresDisabled;
   private boolean isFavorite;
   private Integer numPlays;
+  private List<String> playedBy;
 }

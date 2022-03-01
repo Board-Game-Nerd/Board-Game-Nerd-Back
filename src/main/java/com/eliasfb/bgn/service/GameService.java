@@ -36,8 +36,9 @@ public class GameService {
       Arrays.asList("Temática", "Mecánicas", "Arte", "Originalidad");
 
   public List<GameDto> findAll() {
-    List<GameDto> games = this.mapper.gameToGameDtoList(this.repository.findAllByOwned(true));
-    return games.stream()
+    List<Game> games = this.repository.findAllByOwned(true);
+    List<GameDto> gameDtos = this.mapper.gameToGameDtoList(games);
+    return gameDtos.stream()
         .sorted((g1, g2) -> g2.getNumPlays().compareTo(g1.getNumPlays()))
         .collect(Collectors.toList());
   }
