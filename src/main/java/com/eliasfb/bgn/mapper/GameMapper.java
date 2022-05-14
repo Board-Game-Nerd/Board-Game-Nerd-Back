@@ -91,6 +91,7 @@ public interface GameMapper {
   default Game createGameDtoToGame(CreateGameDto dto) {
     Game game = basicCreateGameDtoToGame(dto);
     game.setOfficialName(dto.getName());
+    game.setOwned(true);
     return game;
   }
 }
