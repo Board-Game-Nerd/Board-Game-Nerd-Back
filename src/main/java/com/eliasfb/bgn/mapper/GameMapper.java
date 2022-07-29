@@ -1,9 +1,6 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.game.CreateGameDto;
-import com.eliasfb.bgn.dto.game.GameDetailDto;
-import com.eliasfb.bgn.dto.game.GameDto;
-import com.eliasfb.bgn.dto.game.GameExpansionDto;
+import com.eliasfb.bgn.dto.game.*;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.GameExpansion;
 import com.mysql.cj.util.StringUtils;
@@ -66,9 +63,9 @@ public interface GameMapper {
 
   default GameDetailDto gameToGameDetailDto(Game game) {
     GameDetailDto gameDetailDto = this.basicGameToGameDetailDto(game);
-    gameDetailDto.setImageUrls(
+    gameDetailDto.setImages(
         game.getImages().stream()
-            .map(g -> BACKEND_HOST + "/images/" + g.getName())
+            .map(g -> new ImageDto(BACKEND_HOST + "/images/" + g.getName()))
             .collect(Collectors.toList()));
     gameDetailDto.setRulesUrl(BACKEND_HOST + "/rules/" + game.getName().replace(" ", "") + ".pdf");
     long expansionsOwned =

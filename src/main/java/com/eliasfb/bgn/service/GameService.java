@@ -62,7 +62,10 @@ public class GameService {
         .map(s -> new Score(gameCreated.getId(), s, 0))
         .forEach(s -> this.scoreRepository.save(s));
     imageRepository.save(
-        new Image(gameCreated.getId(), gameCreated.getName().replace(" ", "").concat(".jpg"), 0));
+        new Image(
+            gameCreated.getId(),
+            gameCreated.getName().replace(" ", "").toLowerCase().concat(".jpg"),
+            0));
     return responseDto;
   }
 
