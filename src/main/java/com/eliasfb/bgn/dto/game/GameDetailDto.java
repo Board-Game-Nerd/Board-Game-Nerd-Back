@@ -10,7 +10,7 @@ import java.util.List;
 public class GameDetailDto {
   private Integer id;
   private String name;
-  private List<String> imageUrls;
+  private List<ImageDto> images;
   private String description;
   private String auxiliarDescription;
   private Integer minPlayers;
