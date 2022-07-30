@@ -13,4 +13,4 @@ jobs:
       - uses: actions/add-to-project@v0.3.0
         with:
           project-url: https://github.com/users/fragmentados/projects/1
-          github-token: ${{ secrets.FRAGMENTADOS_PERSONAL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
