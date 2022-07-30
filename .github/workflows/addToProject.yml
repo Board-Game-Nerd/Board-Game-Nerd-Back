@@ -1,4 +1,4 @@
-name: "Default Project"
+name: Add issues to project
 
 on:
   issues:
@@ -6,12 +6,11 @@ on:
       - opened
 
 jobs:
-  add_to_project:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - uses: skeet70/default-project-board-action@v1
+      - uses: actions/add-to-project@v0.3.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          issue: ${{ github.event.issue.number }}
-          project: 1
+          project-url: https://github.com/users/fragmentados/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
