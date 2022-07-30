@@ -11,6 +11,5 @@ public class ImageDto {
 
   public ImageDto(String url) {
     this.src = url;
-    this.thumb = url;
   }
 }
