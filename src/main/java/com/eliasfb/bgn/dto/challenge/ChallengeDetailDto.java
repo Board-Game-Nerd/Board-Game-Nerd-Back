@@ -1,6 +1,6 @@
 package com.eliasfb.bgn.dto.challenge;
 
-import com.eliasfb.bgn.dto.game.GameStatDto;
+import com.eliasfb.bgn.openapi.model.GameStatDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

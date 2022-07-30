@@ -1,8 +1,8 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.master.MasterDto;
-import com.eliasfb.bgn.dto.master.MastersDto;
 import com.eliasfb.bgn.mapper.MasterMapper;
+import com.eliasfb.bgn.openapi.model.MasterDto;
+import com.eliasfb.bgn.openapi.model.MastersDto;
 import com.eliasfb.bgn.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,12 @@ public class MasterService {
     List<MasterDto> victoriesDto =
         this.mapper.victoryToMasterDto(this.victoryRepository.findByOrderByNameAsc());
 
-    return new MastersDto(
-        themesDto, complexitiesDto, locationsDto, mediaDto, stylesDto, victoriesDto);
+    return new MastersDto()
+        .themes(themesDto)
+        .complexities(complexitiesDto)
+        .locations(locationsDto)
+        .media(mediaDto)
+        .styles(stylesDto)
+        .victories(victoriesDto);
   }
 }

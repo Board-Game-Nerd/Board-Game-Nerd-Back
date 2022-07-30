@@ -1,21 +1,11 @@
 package com.eliasfb.bgn.controller;
 
-import com.eliasfb.bgn.dto.ResponseDto;
-import com.eliasfb.bgn.service.ImportService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
-
-@CrossOrigin(origins = "*", maxAge = 3600)
+/*@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping({"/import"})
+@RequestMapping({"/import"})*/
 public class ImportController {
 
-  @Autowired private ImportService service;
+  /*@Autowired private ImportService service;
 
   @PostMapping()
   public ResponseDto importAll() {
@@ -23,10 +13,10 @@ public class ImportController {
       String finalMessage = this.service.importPlayers().getMessage();
       finalMessage += " / " + this.service.importGames().getMessage();
       finalMessage += " / " + this.service.importPlays().getMessage();
-      return new ResponseDto(ResponseDto.OK_CODE, finalMessage);
+      return new ResponseDto().errorCode(OK_CODE).message(finalMessage);
     } catch (IOException e) {
       e.printStackTrace();
-      return new ResponseDto(-1, e.toString());
+      return new ResponseDto().errorCode(-1).message(e.toString());
     }
   }
 
@@ -36,7 +26,7 @@ public class ImportController {
       return this.service.importPlayers();
     } catch (IOException e) {
       e.printStackTrace();
-      return new ResponseDto(-1, e.toString());
+      return new ResponseDto().errorCode(-1).message(e.toString());
     }
   }
 
@@ -46,7 +36,7 @@ public class ImportController {
       return this.service.importGames();
     } catch (IOException e) {
       e.printStackTrace();
-      return new ResponseDto(-1, e.toString());
+      return new ResponseDto().errorCode(-1).message(e.toString());
     }
   }
 
@@ -56,7 +46,7 @@ public class ImportController {
       return this.service.importPlays();
     } catch (IOException e) {
       e.printStackTrace();
-      return new ResponseDto(-1, e.toString());
+      return new ResponseDto().errorCode(-1).message(e.toString());
     }
-  }
+  }*/
 }

@@ -6,14 +6,14 @@ info:
   contact:
     email: "eliasfb94@hotmail.com"
 tags:
-- name: "Games"
-  description: "Operations regarding board games"
-- name: "Players"
-  description: "Operations regarding players"
-- name: "Plays"
-  description: "Operations regarding game plays"
-- name: "Masters"
-  description: "Operations regarding master information"
+  - name: "Games"
+    description: "Operations regarding board games"
+  - name: "Players"
+    description: "Operations regarding players"
+  - name: "Plays"
+    description: "Operations regarding game plays"
+  - name: "Masters"
+    description: "Operations regarding master information"
 schemes:
   - "https"
   - "http"
@@ -24,6 +24,10 @@ paths:
         - "Games"
       summary: "Obtains all the games on the collection with their basic info"
       operationId: "getGames"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       responses:
         "200":
           description: "successful operation"
@@ -36,6 +40,10 @@ paths:
         - "Games"
       summary: "Creates a new game"
       operationId: "createGame"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       parameters:
         - $ref: "#/parameters/CreateGame"
       responses:
@@ -49,6 +57,10 @@ paths:
         - "Games"
       summary: "Obtains a certain game details by its id"
       operationId: "getGameById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       parameters:
         - $ref: "#/parameters/GameId"
       responses:
@@ -62,6 +74,10 @@ paths:
         - "Players"
       summary: "Obtains all the players registered with their basic info"
       operationId: "getPlayers"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       responses:
         "200":
           description: "successful operation"
@@ -75,6 +91,10 @@ paths:
         - "Players"
       summary: "Obtains all the player groups registered with their basic info"
       operationId: "getPlayerGroups"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       responses:
         "200":
           description: "successful operation"
@@ -88,6 +108,10 @@ paths:
         - "Players"
       summary: "Obtains a certain player details by its id"
       operationId: "getPlayerById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       parameters:
         - $ref: "#/parameters/PlayerId"
       responses:
@@ -101,6 +125,10 @@ paths:
         - "Masters"
       summary: "Obtains all the masterinfo"
       operationId: "getMasters"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       responses:
         "200":
           description: "successful operation"
@@ -112,17 +140,27 @@ paths:
         - "Plays"
       summary: "Obtains all the plays registered with their basic info"
       operationId: "getPlays"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       responses:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Play"
+            type: array
+            items:
+              $ref: "#/definitions/Play"
   /plays/{playId}:
     get:
       tags:
         - "Plays"
       summary: "Obtains a certain play details by its id"
       operationId: "getPlayById"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
       parameters:
         - $ref: "#/parameters/PlayId"
       responses:
@@ -189,6 +227,7 @@ definitions:
         type: boolean
       winPercentage:
         type: number
+        format: double
         example: 40.2
       maxScore:
         type: integer
@@ -238,6 +277,7 @@ definitions:
         example: 100
       totalWinPercentage:
         type: "number"
+        format: "double"
         description: Average win percentage calculated across all plays
         example: 45.3
       highestPlayScore:
@@ -245,12 +285,12 @@ definitions:
         description: Highest score obtained on a single play
         example: 2000
       favouriteGame:
-        $ref: "#/definitions/GameStatDto"
+        $ref: "#/definitions/GameStat"
       highestWinRateGame:
-        $ref: "#/definitions/GameStatDto"
+        $ref: "#/definitions/GameStat"
       latestPlayedGame:
-        $ref: "#/definitions/GameStatDto"
-  GameStatDto:
+        $ref: "#/definitions/GameStat"
+  GameStat:
     properties:
       gameId:
         type: "integer"
@@ -336,6 +376,9 @@ definitions:
       complexity:
         type: "string"
         example: "Party"
+      style:
+        type: "string"
+        example: "Player Progression"
       minPlayers:
         type: "integer"
         format: "int32"

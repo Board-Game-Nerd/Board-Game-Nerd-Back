@@ -1,10 +1,10 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.ResponseDto;
 import com.eliasfb.bgn.dto.bgstats.BgStatsDto;
 import com.eliasfb.bgn.dto.bgstats.BgStatsGameDto;
 import com.eliasfb.bgn.dto.bgstats.BgStatsPlayDto;
 import com.eliasfb.bgn.model.*;
+import com.eliasfb.bgn.openapi.model.ResponseDto;
 import com.eliasfb.bgn.repository.GameRepository;
 import com.eliasfb.bgn.repository.PlayRepository;
 import com.eliasfb.bgn.repository.PlayerRepository;
@@ -27,6 +27,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static com.eliasfb.bgn.service.DateService.STANDARD_DATE_FORMAT;
+import static com.eliasfb.bgn.service.GameService.OK_CODE;
 
 @Service
 public class ImportService {
@@ -79,8 +80,9 @@ public class ImportService {
               this.gameRepository.save(game);
               numGamesInserted.getAndSet(numGamesInserted.get() + 1);
             });
-    return new ResponseDto(
-        ResponseDto.OK_CODE, numGamesInserted.get() + " games imported successfully");
+    return new ResponseDto()
+        .errorCode(OK_CODE)
+        .message(numGamesInserted.get() + " games imported successfully");
   }
 
   @Transactional
@@ -105,8 +107,9 @@ public class ImportService {
               }
               numPlaysInserted.getAndSet(numPlaysInserted.get() + 1);
             });
-    return new ResponseDto(
-        ResponseDto.OK_CODE, numPlaysInserted.get() + " plays imported successfully");
+    return new ResponseDto()
+        .errorCode(OK_CODE)
+        .message(numPlaysInserted.get() + " plays imported successfully");
   }
 
   private Play createPlayFromBgStatsPlay(
@@ -198,8 +201,9 @@ public class ImportService {
               this.playerRespository.save(new Player(newPlayer.getName()));
               numPlayersInserted.getAndSet(numPlayersInserted.get() + 1);
             });
-    return new ResponseDto(
-        ResponseDto.OK_CODE, numPlayersInserted.get() + " players imported successfully");
+    return new ResponseDto()
+        .errorCode(OK_CODE)
+        .message(numPlayersInserted.get() + " players imported successfully");
   }
 
   private BgStatsDto getBgStatsDtoFromFile() throws IOException {

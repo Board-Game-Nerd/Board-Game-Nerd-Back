@@ -1,13 +1,13 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.ResponseDto;
 import com.eliasfb.bgn.dto.play.CreatePlayDto;
-import com.eliasfb.bgn.dto.play.PlayDetailDto;
-import com.eliasfb.bgn.dto.play.PlayDto;
 import com.eliasfb.bgn.mapper.PlayMapper;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.Play;
 import com.eliasfb.bgn.model.PlayPlayerRel;
+import com.eliasfb.bgn.openapi.model.PlayDetailDto;
+import com.eliasfb.bgn.openapi.model.PlayDto;
+import com.eliasfb.bgn.openapi.model.ResponseDto;
 import com.eliasfb.bgn.repository.GameRepository;
 import com.eliasfb.bgn.repository.PlayRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +21,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.eliasfb.bgn.service.GameService.OK_CODE;
 
 @Service
 public class PlayService {
@@ -36,7 +38,8 @@ public class PlayService {
 
   @Transactional
   public ResponseDto create(CreatePlayDto playDto) {
-    ResponseDto responseDto = new ResponseDto(ResponseDto.OK_CODE, "Play created successfully");
+    ResponseDto responseDto =
+        new ResponseDto().errorCode(OK_CODE).message("Play created successfully");
     Play playToCreate = this.mapper.createPlayToPlay(playDto);
     playToCreate.setGame(this.gameRepository.findById(playDto.getGameId()));
     playToCreate.setDate(new Date(System.currentTimeMillis()));
