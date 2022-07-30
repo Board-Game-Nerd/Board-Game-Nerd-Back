@@ -1,10 +1,10 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.play.CreatePlayDto;
 import com.eliasfb.bgn.mapper.PlayMapper;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.Play;
 import com.eliasfb.bgn.model.PlayPlayerRel;
+import com.eliasfb.bgn.openapi.model.CreatePlayDto;
 import com.eliasfb.bgn.openapi.model.PlayDetailDto;
 import com.eliasfb.bgn.openapi.model.PlayDto;
 import com.eliasfb.bgn.openapi.model.ResponseDto;

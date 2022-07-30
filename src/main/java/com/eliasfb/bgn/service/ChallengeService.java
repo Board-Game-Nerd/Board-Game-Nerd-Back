@@ -1,8 +1,8 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.challenge.ChallengeDetailDto;
-import com.eliasfb.bgn.dto.challenge.ChallengeDto;
 import com.eliasfb.bgn.mapper.ChallengeMapper;
+import com.eliasfb.bgn.openapi.model.ChallengeDetailDto;
+import com.eliasfb.bgn.openapi.model.ChallengeDto;
 import com.eliasfb.bgn.repository.ChallengeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

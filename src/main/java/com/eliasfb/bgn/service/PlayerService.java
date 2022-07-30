@@ -1,6 +1,5 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.player.CreatePlayerDto;
 import com.eliasfb.bgn.mapper.PlayerMapper;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.PlayPlayerRel;

@@ -1,8 +1,8 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.challenge.ChallengeDetailDto;
-import com.eliasfb.bgn.dto.challenge.ChallengeDto;
 import com.eliasfb.bgn.model.Challenge;
+import com.eliasfb.bgn.openapi.model.ChallengeDetailDto;
+import com.eliasfb.bgn.openapi.model.ChallengeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,9 +1,7 @@
 package com.eliasfb.bgn.controller;
 
 import com.eliasfb.bgn.openapi.api.PlayersApi;
-import com.eliasfb.bgn.openapi.model.PlayerDetailDto;
-import com.eliasfb.bgn.openapi.model.PlayerDto;
-import com.eliasfb.bgn.openapi.model.PlayerGroupDto;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +15,10 @@ import java.util.List;
 public class PlayerController implements PlayersApi {
   @Autowired private PlayerService service;
 
-  /*@GetMapping(path = {"/ids"})
-  public List<Integer> findIds() {
-    return this.service.findIds();
-  }*/
+  @Override
+  public ResponseEntity<List<Integer>> getPlayerIds() {
+    return ResponseEntity.ok(this.service.findIds());
+  }
 
   @Override
   public ResponseEntity<List<PlayerDto>> getPlayers() {
@@ -42,8 +40,8 @@ public class PlayerController implements PlayersApi {
     }
   }
 
-  /*@PostMapping
-  public ResponseDto create(@RequestBody CreatePlayerDto player) {
-    return this.service.create(player);
-  }*/
+  @Override
+  public ResponseEntity<ResponseDto> createPlayer(CreatePlayerDto createPlayer) {
+    return ResponseEntity.ok(this.service.create(createPlayer));
+  }
 }

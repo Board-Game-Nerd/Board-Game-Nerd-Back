@@ -86,9 +86,9 @@ public interface GameMapper {
   @Mapping(source = "mediumId", target = "medium.id")
   @Mapping(source = "styleId", target = "style.id")
   @Mapping(source = "victoryId", target = "victory.id")
-  Game basicCreateGameDtoToGame(InlineObjectDto dto);
+  Game basicCreateGameDtoToGame(CreateGameDto dto);
 
-  default Game createGameDtoToGame(InlineObjectDto dto) {
+  default Game createGameDtoToGame(CreateGameDto dto) {
     Game game = basicCreateGameDtoToGame(dto);
     game.setOfficialName(dto.getName());
     game.setOwned(true);

@@ -1,6 +1,5 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.play.CreatePlayDto;
 import com.eliasfb.bgn.model.Play;
 import com.eliasfb.bgn.model.PlayPlayerRel;
 import com.eliasfb.bgn.model.PlayPlayerRelId;
@@ -95,7 +94,7 @@ public abstract class PlayMapper {
                     new PlayPlayerRel(
                         new PlayPlayerRelId(play, new Player(player.getPlayerId())),
                         player.getScore(),
-                        player.isWinner()))
+                        player.getIsWinner()))
             .collect(Collectors.toList()));
     return play;
   }

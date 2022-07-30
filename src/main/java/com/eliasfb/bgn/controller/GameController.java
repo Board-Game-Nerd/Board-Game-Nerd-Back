@@ -1,10 +1,7 @@
 package com.eliasfb.bgn.controller;
 
 import com.eliasfb.bgn.openapi.api.GamesApi;
-import com.eliasfb.bgn.openapi.model.GameDetailDto;
-import com.eliasfb.bgn.openapi.model.GameDto;
-import com.eliasfb.bgn.openapi.model.InlineObjectDto;
-import com.eliasfb.bgn.openapi.model.ResponseDto;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +20,10 @@ public class GameController implements GamesApi {
     return ResponseEntity.ok(this.service.findAll());
   }
 
-  /*@GetMapping(path = {"/ids"})
-  public List<Integer> findIds() {
-    return this.service.findIds();
-  }*/
+  @Override
+  public ResponseEntity<List<Integer>> getGameIds() {
+    return ResponseEntity.ok(this.service.findIds());
+  }
 
   @Override
   public ResponseEntity<GameDetailDto> getGameById(Integer gameId) {
@@ -34,26 +31,24 @@ public class GameController implements GamesApi {
   }
 
   @Override
-  public ResponseEntity<ResponseDto> createGame(InlineObjectDto createGame) {
+  public ResponseEntity<ResponseDto> createGame(CreateGameDto createGame) {
     return ResponseEntity.ok(this.service.create(createGame));
   }
 
-  /*@PostMapping(path = {"/{id}/favorite"})
-  public GameDetailDto updateGameFavoriteStatus(@PathVariable("id") int id) {
-    return this.service.updateFavoriteStatus(id);
+  @Override
+  public ResponseEntity<GameDetailDto> updateGameFavoriteStatus(Integer gameId) {
+    return ResponseEntity.ok(this.service.updateFavoriteStatus(gameId));
   }
 
-  @PutMapping(path = {"/{id}/location"})
-  public ResponseDto updateLocation(
-      @PathVariable("id") int id, @RequestBody GameLocationUpdateDto game) {
-    return this.service.updateLocation(id, game);
+  @Override
+  public ResponseEntity<ResponseDto> updateLocation(
+      Integer gameId, GameLocationUpdateDto gameUpdateLocation) {
+    return ResponseEntity.ok(this.service.updateLocation(gameId, gameUpdateLocation));
   }
 
-  @PutMapping(path = {"/{id}/score/{scoreId}/{value}"})
-  public Double updateScoreValue(
-      @PathVariable("id") int id,
-      @PathVariable("scoreId") int scoreId,
-      @PathVariable("value") int value) {
-    return this.service.updateScoreValue(id, scoreId, value);
-  }*/
+  @Override
+  public ResponseEntity<Double> updateScoreValue(
+      Integer gameId, Integer scoreId, Integer scoreValue) {
+    return ResponseEntity.ok(this.service.updateScoreValue(gameId, scoreId, scoreValue));
+  }
 }

@@ -1,15 +1,11 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.game.GameLocationUpdateDto;
 import com.eliasfb.bgn.mapper.GameMapper;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.Image;
 import com.eliasfb.bgn.model.Location;
 import com.eliasfb.bgn.model.Score;
-import com.eliasfb.bgn.openapi.model.GameDetailDto;
-import com.eliasfb.bgn.openapi.model.GameDto;
-import com.eliasfb.bgn.openapi.model.InlineObjectDto;
-import com.eliasfb.bgn.openapi.model.ResponseDto;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.repository.GameRepository;
 import com.eliasfb.bgn.repository.ImageRepository;
 import com.eliasfb.bgn.repository.LocationRepository;
@@ -59,7 +55,7 @@ public class GameService {
   }
 
   @Transactional
-  public ResponseDto create(InlineObjectDto dto) {
+  public ResponseDto create(CreateGameDto dto) {
     ResponseDto responseDto =
         new ResponseDto().errorCode(OK_CODE).message("Game created successfully");
     Game gameCreated = this.repository.save(this.mapper.createGameDtoToGame(dto));

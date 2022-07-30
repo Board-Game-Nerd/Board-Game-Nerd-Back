@@ -1,8 +1,8 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.player.CreatePlayerDto;
 import com.eliasfb.bgn.model.Player;
 import com.eliasfb.bgn.model.PlayerGroup;
+import com.eliasfb.bgn.openapi.model.CreatePlayerDto;
 import com.eliasfb.bgn.openapi.model.PlayerDetailDto;
 import com.eliasfb.bgn.openapi.model.PlayerDto;
 import com.eliasfb.bgn.openapi.model.PlayerGroupDto;
