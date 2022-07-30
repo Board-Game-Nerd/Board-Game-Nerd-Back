@@ -6,17 +6,23 @@ info:
   contact:
     email: "eliasfb94@hotmail.com"
 tags:
-- name: "Games"
-  description: "Operations regarding board games"
-- name: "Players"
-  description: "Operations regarding players"
-- name: "Plays"
-  description: "Operations regarding game plays"
-- name: "Masters"
-  description: "Operations regarding master information"
+  - name: "Games"
+    description: "Operations regarding board games"
+  - name: "Players"
+    description: "Operations regarding players"
+  - name: "Plays"
+    description: "Operations regarding game plays"
+  - name: "Masters"
+    description: "Operations regarding master information"
+  - name: "Challenges"
+    description: "Operations regarding challenges information"
+  - name: "Import"
+    description: "Operations regarding import processes from mobile app"
 schemes:
   - "https"
   - "http"
+produces:
+  - "application/json"
 paths:
   /games:
     get:
@@ -43,6 +49,19 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/Response"
+  /games/ids:
+    get:
+      tags:
+        - "Games"
+      summary: "Obtains all the ids of games on the collection"
+      operationId: "getGameIds"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              type: integer
   /games/{gameId}:
     get:
       tags:
@@ -56,6 +75,50 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/GameDetail"
+  /games/{gameId}/score/{scoreId}/{scoreValue}:
+    put:
+      tags:
+        - "Games"
+      summary: "Update score on a certain game"
+      operationId: "updateScoreValue"
+      parameters:
+        - $ref: "#/parameters/GameId"
+        - $ref: "#/parameters/ScoreId"
+        - $ref: "#/parameters/ScoreValue"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            description: The new average score of the game after applying the change
+            type: number
+            format: double
+  /games/{gameId}/favorite:
+    post:
+      tags:
+        - "Games"
+      summary: "Update favorite status on a certain game"
+      operationId: "updateGameFavoriteStatus"
+      parameters:
+        - $ref: "#/parameters/GameId"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GameDetail"
+  /games/{gameId}/location:
+    put:
+      tags:
+        - "Games"
+      summary: "Update location on a certain game"
+      operationId: "updateLocation"
+      parameters:
+        - $ref: "#/parameters/GameId"
+        - $ref: "#/parameters/GameLocationUpdate"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Response"
   /players:
     get:
       tags:
@@ -69,6 +132,31 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Player"
+    post:
+      tags:
+        - "Players"
+      summary: "Creates a new player"
+      operationId: "createPlayer"
+      parameters:
+        - $ref: "#/parameters/CreatePlayer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Response"
+  /players/ids:
+    get:
+      tags:
+        - "Players"
+      summary: "Obtains all the ids of players on the collection"
+      operationId: "getPlayerIds"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              type: integer
   /players/groups:
     get:
       tags:
@@ -116,7 +204,34 @@ paths:
         "200":
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Play"
+            type: array
+            items:
+              $ref: "#/definitions/Play"
+    post:
+      tags:
+        - "Plays"
+      summary: "Creates a new play"
+      operationId: "createPlay"
+      parameters:
+        - $ref: "#/parameters/CreatePlay"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Response"
+  /plays/ids:
+    get:
+      tags:
+        - "Plays"
+      summary: "Obtains all the ids of plays on the collection"
+      operationId: "getPlaysIds"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              type: integer
   /plays/{playId}:
     get:
       tags:
@@ -130,7 +245,103 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/PlayDetail"
+  /challenges:
+    get:
+      tags:
+        - "Challenges"
+      summary: "Obtains all the challenges registered with their basic info"
+      operationId: "getChallenges"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Challenge"
+  /challenges/ids:
+    get:
+      tags:
+        - "Challenges"
+      summary: "Obtains all the ids of challenges on the collection"
+      operationId: "getChallengeIds"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              type: integer
+  /challenges/{challengeId}:
+    get:
+      tags:
+        - "Challenges"
+      summary: "Obtains challenge details by id"
+      operationId: "getChallengeById"
+      parameters:
+        - $ref: "#/parameters/ChallengeId"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ChallengeDetail"
+  /import:
+    post:
+      tags:
+        - "Import"
+      summary: "Imports every possible data from the mobile app export file"
+      operationId: "importAll"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Response"
 definitions:
+  Challenge:
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        example: 1
+      createdDate:
+        type: "string"
+        description: "Date in which the challenge was created in format YYYY-MM-DD"
+        example: "2022-07-24"
+      dueDate:
+        type: "string"
+        description: "Date in which the challenge will be considered completed in format YYYY-MM-DD"
+        example: "2023-07-24"
+      name:
+        type: "string"
+        example: "H-index 20 challenge"
+      value:
+        type: "string"
+        description: "Value associated with the challenge"
+        example: 20
+  ChallengeDetail:
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        example: 1
+      createdDate:
+        type: "string"
+        description: "Date in which the challenge was created in format YYYY-MM-DD"
+        example: "2022-07-24"
+      dueDate:
+        type: "string"
+        description: "Date in which the challenge will be considered completed in format YYYY-MM-DD"
+        example: "2023-07-24"
+      name:
+        type: "string"
+        example: "H-index 20 challenge"
+      value:
+        type: "string"
+        description: "Value associated with the challenge"
+        example: 20
+      gameStats:
+        type: "array"
+        items:
+          $ref: "#/definitions/GameStat"
   PlayDetail:
     properties:
       id:
@@ -189,6 +400,7 @@ definitions:
         type: boolean
       winPercentage:
         type: number
+        format: double
         example: 40.2
       maxScore:
         type: integer
@@ -238,6 +450,7 @@ definitions:
         example: 100
       totalWinPercentage:
         type: "number"
+        format: "double"
         description: Average win percentage calculated across all plays
         example: 45.3
       highestPlayScore:
@@ -245,12 +458,12 @@ definitions:
         description: Highest score obtained on a single play
         example: 2000
       favouriteGame:
-        $ref: "#/definitions/GameStatDto"
+        $ref: "#/definitions/GameStat"
       highestWinRateGame:
-        $ref: "#/definitions/GameStatDto"
+        $ref: "#/definitions/GameStat"
       latestPlayedGame:
-        $ref: "#/definitions/GameStatDto"
-  GameStatDto:
+        $ref: "#/definitions/GameStat"
+  GameStat:
     properties:
       gameId:
         type: "integer"
@@ -336,6 +549,9 @@ definitions:
       complexity:
         type: "string"
         example: "Party"
+      style:
+        type: "string"
+        example: "Player Progression"
       minPlayers:
         type: "integer"
         format: "int32"
@@ -506,6 +722,73 @@ definitions:
         type: integer
       message:
         type: string
+  CreateGame:
+    properties:
+      name:
+        type: "string"
+        example: "Fluxx"
+      description:
+        type: "string"
+        example: "Simple game where you add upon new rules as you play"
+      minPlayers:
+        type: "integer"
+        format: "int32"
+        example: 1
+      maxPlayers:
+        type: "integer"
+        format: "int32"
+        example: 2
+      themeId:
+        type: "integer"
+        example: 1
+      complexityId:
+        type: "integer"
+        example: 1
+      locationId:
+        type: "integer"
+        example: 1
+      mediumId:
+        type: "integer"
+        example: 1
+      styleId:
+        type: "integer"
+        example: 1
+      victoryId:
+        type: "integer"
+        example: 1
+      duration:
+        type: "integer"
+        description: Average duration in minutes of a play of this game
+        example: 30
+  CreatePlayer:
+    properties:
+      name:
+        type: "string"
+        example: "Samuel"
+  CreatePlay:
+    properties:
+      gameId:
+        type: integer
+        example: 1
+      players:
+        type: array
+        items:
+          $ref: "#/definitions/CreatePlayPlayer"
+  CreatePlayPlayer:
+    properties:
+      playerId:
+        type: integer
+        example: 1
+      score:
+        type: integer
+        example: 10
+      isWinner:
+        type: boolean
+  GameLocationUpdate:
+    properties:
+      locationId:
+        type: integer
+        example: 1
 parameters:
   PlayId:
     in: path
@@ -525,46 +808,49 @@ parameters:
     required: true
     description: A game's id
     type: integer
+  ChallengeId:
+    in: path
+    name: challengeId
+    required: true
+    description: A challenge's id
+    type: integer
+  ScoreId:
+    in: path
+    name: scoreId
+    required: true
+    description: A game's score id
+    type: integer
+  ScoreValue:
+    in: path
+    name: scoreValue
+    required: true
+    description: A game's score's value
+    type: integer
+  CreatePlay:
+    in: body
+    name: createPlay
+    required: true
+    description: The play about to be created
+    schema:
+      $ref: "#/definitions/CreatePlay"
+  CreatePlayer:
+    in: body
+    name: createPlayer
+    required: true
+    description: The player about to be created
+    schema:
+      $ref: "#/definitions/CreatePlayer"
   CreateGame:
     in: body
     name: createGame
     required: true
     description: The game about to be created
     schema:
-      properties:
-        name:
-          type: "string"
-          example: "Fluxx"
-        description:
-          type: "string"
-          example: "Simple game where you add upon new rules as you play"
-        minPlayers:
-          type: "integer"
-          format: "int32"
-          example: 1
-        maxPlayers:
-          type: "integer"
-          format: "int32"
-          example: 2
-        themeId:
-          type: "integer"
-          example: 1
-        complexityId:
-          type: "integer"
-          example: 1
-        locationId:
-          type: "integer"
-          example: 1
-        mediumId:
-          type: "integer"
-          example: 1
-        styleId:
-          type: "integer"
-          example: 1
-        victoryId:
-          type: "integer"
-          example: 1
-        duration:
-          type: "integer"
-          description: Average duration in minutes of a play of this game
-          example: 30
+      $ref: "#/definitions/CreateGame"
+  GameLocationUpdate:
+    in: body
+    name: gameUpdateLocation
+    required: true
+    description: The new location of the game
+    schema:
+      $ref: "#/definitions/GameLocationUpdate"

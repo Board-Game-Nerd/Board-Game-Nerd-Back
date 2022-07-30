@@ -1,7 +1,7 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.master.MasterDto;
 import com.eliasfb.bgn.model.*;
+import com.eliasfb.bgn.openapi.model.MasterDto;
 import org.mapstruct.Mapper;
 
 import java.util.List;

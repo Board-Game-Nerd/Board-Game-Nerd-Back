@@ -1,31 +1,31 @@
 package com.eliasfb.bgn.controller;
 
-import com.eliasfb.bgn.dto.challenge.ChallengeDetailDto;
-import com.eliasfb.bgn.dto.challenge.ChallengeDto;
+import com.eliasfb.bgn.openapi.api.ChallengesApi;
+import com.eliasfb.bgn.openapi.model.ChallengeDetailDto;
+import com.eliasfb.bgn.openapi.model.ChallengeDto;
 import com.eliasfb.bgn.service.ChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
-@RequestMapping({"/challenges"})
-public class ChallengeController {
+@Controller
+public class ChallengeController implements ChallengesApi {
   @Autowired private ChallengeService service;
 
-  @GetMapping
-  public List<ChallengeDto> findAll() {
-    return this.service.findAll();
+  @Override
+  public ResponseEntity<ChallengeDetailDto> getChallengeById(Integer challengeId) {
+    return ResponseEntity.ok(this.service.findById(challengeId));
   }
 
-  @GetMapping(path = {"/{id}"})
-  public ChallengeDetailDto findChallenge(@PathVariable("id") int id) {
-    return this.service.findById(id);
+  @Override
+  public ResponseEntity<List<Integer>> getChallengeIds() {
+    return ResponseEntity.ok(this.service.findIds());
   }
 
-  @GetMapping(path = {"/ids"})
-  public List<Integer> findIds() {
-    return this.service.findIds();
+  @Override
+  public ResponseEntity<List<ChallengeDto>> getChallenges() {
+    return ResponseEntity.ok(this.service.findAll());
   }
 }

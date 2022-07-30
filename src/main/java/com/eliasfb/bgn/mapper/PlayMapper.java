@@ -1,10 +1,10 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.play.*;
 import com.eliasfb.bgn.model.Play;
 import com.eliasfb.bgn.model.PlayPlayerRel;
 import com.eliasfb.bgn.model.PlayPlayerRelId;
 import com.eliasfb.bgn.model.Player;
+import com.eliasfb.bgn.openapi.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +34,12 @@ public abstract class PlayMapper {
         play.getPlayers().stream()
             .map(
                 player ->
-                    new PlayPlayerDto(
-                        this.playerMapper.playerToPlayerDto(player.getId().getPlayer()),
-                        player.getScore(),
-                        player.isWinner()))
+                    new PlayPlayerDto()
+                        .player(this.playerMapper.playerToPlayerDto(player.getId().getPlayer()))
+                        .score(player.getScore())
+                        .winner(player.isWinner()))
             .collect(Collectors.toList()));
-    playDto.setGame(new BasicGameDto());
+    playDto.setGame(new BasicGameInfoDto());
     playDto.getGame().setId(play.getGame().getId());
     playDto.getGame().setName(play.getGame().getName());
     playDto
@@ -64,12 +64,12 @@ public abstract class PlayMapper {
         play.getPlayers().stream()
             .map(
                 player ->
-                    new PlayDetailPlayerDto(
-                        this.playerMapper.playerToPlayerDto(player.getId().getPlayer()),
-                        player.getScore(),
-                        player.isWinner()))
+                    new PlayDetailPlayerDto()
+                        .player(this.playerMapper.playerToPlayerDto(player.getId().getPlayer()))
+                        .score(player.getScore())
+                        .winner(player.isWinner()))
             .collect(Collectors.toList()));
-    playDetailDto.setGame(new BasicGameDto());
+    playDetailDto.setGame(new BasicGameInfoDto());
     playDetailDto.getGame().setId(play.getGame().getId());
     playDetailDto.getGame().setName(play.getGame().getName());
     playDetailDto
@@ -94,7 +94,7 @@ public abstract class PlayMapper {
                     new PlayPlayerRel(
                         new PlayPlayerRelId(play, new Player(player.getPlayerId())),
                         player.getScore(),
-                        player.isWinner()))
+                        player.getIsWinner()))
             .collect(Collectors.toList()));
     return play;
   }

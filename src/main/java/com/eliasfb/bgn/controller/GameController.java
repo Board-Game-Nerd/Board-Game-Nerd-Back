@@ -1,58 +1,54 @@
 package com.eliasfb.bgn.controller;
 
-import com.eliasfb.bgn.dto.ResponseDto;
-import com.eliasfb.bgn.dto.game.CreateGameDto;
-import com.eliasfb.bgn.dto.game.GameDetailDto;
-import com.eliasfb.bgn.dto.game.GameDto;
-import com.eliasfb.bgn.dto.game.GameLocationUpdateDto;
+import com.eliasfb.bgn.openapi.api.GamesApi;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
-@RequestMapping({"/games"})
-public class GameController {
+@Controller
+public class GameController implements GamesApi {
   @Autowired private GameService service;
 
-  @GetMapping
-  public List<GameDto> findAll() {
-    return this.service.findAll();
+  @Override
+  public ResponseEntity<List<GameDto>> getGames() {
+    return ResponseEntity.ok(this.service.findAll());
   }
 
-  @GetMapping(path = {"/ids"})
-  public List<Integer> findIds() {
-    return this.service.findIds();
+  @Override
+  public ResponseEntity<List<Integer>> getGameIds() {
+    return ResponseEntity.ok(this.service.findIds());
   }
 
-  @GetMapping(path = {"/{id}"})
-  public GameDetailDto findGame(@PathVariable("id") int id) {
-    return this.service.findById(id);
+  @Override
+  public ResponseEntity<GameDetailDto> getGameById(Integer gameId) {
+    return ResponseEntity.ok(this.service.findById(gameId));
   }
 
-  @PostMapping
-  public ResponseDto create(@RequestBody CreateGameDto game) {
-    return this.service.create(game);
+  @Override
+  public ResponseEntity<ResponseDto> createGame(CreateGameDto createGame) {
+    return ResponseEntity.ok(this.service.create(createGame));
   }
 
-  @PostMapping(path = {"/{id}/favorite"})
-  public GameDetailDto updateGameFavoriteStatus(@PathVariable("id") int id) {
-    return this.service.updateFavoriteStatus(id);
+  @Override
+  public ResponseEntity<GameDetailDto> updateGameFavoriteStatus(Integer gameId) {
+    return ResponseEntity.ok(this.service.updateFavoriteStatus(gameId));
   }
 
-  @PutMapping(path = {"/{id}/location"})
-  public ResponseDto updateLocation(
-      @PathVariable("id") int id, @RequestBody GameLocationUpdateDto game) {
-    return this.service.updateLocation(id, game);
+  @Override
+  public ResponseEntity<ResponseDto> updateLocation(
+      Integer gameId, GameLocationUpdateDto gameUpdateLocation) {
+    return ResponseEntity.ok(this.service.updateLocation(gameId, gameUpdateLocation));
   }
 
-  @PutMapping(path = {"/{id}/score/{scoreId}/{value}"})
-  public Double updateScoreValue(
-      @PathVariable("id") int id,
-      @PathVariable("scoreId") int scoreId,
-      @PathVariable("value") int value) {
-    return this.service.updateScoreValue(id, scoreId, value);
+  @Override
+  public ResponseEntity<Double> updateScoreValue(
+      Integer gameId, Integer scoreId, Integer scoreValue) {
+    return ResponseEntity.ok(this.service.updateScoreValue(gameId, scoreId, scoreValue));
   }
 }

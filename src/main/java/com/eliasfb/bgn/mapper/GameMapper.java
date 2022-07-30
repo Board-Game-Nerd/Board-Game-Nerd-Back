@@ -1,8 +1,8 @@
 package com.eliasfb.bgn.mapper;
 
-import com.eliasfb.bgn.dto.game.*;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.GameExpansion;
+import com.eliasfb.bgn.openapi.model.*;
 import com.mysql.cj.util.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -36,7 +36,10 @@ public interface GameMapper {
             .findFirst()
             .orElse(null));
     if (!StringUtils.isEmptyOrWhitespaceOnly(game.getFeaturesDisabled())) {
-      gameDto.setFeaturesDisabled(Arrays.asList(game.getFeaturesDisabled().split(",")));
+      gameDto.setFeaturesDisabled(
+          Arrays.asList(game.getFeaturesDisabled().split(",")).stream()
+              .map(featureDisabled -> FeatureDto.fromValue(featureDisabled))
+              .collect(Collectors.toList()));
     }
     gameDto.setNumPlays(game.getPlays().size());
     gameDto.setPlayedBy(
@@ -65,7 +68,7 @@ public interface GameMapper {
     GameDetailDto gameDetailDto = this.basicGameToGameDetailDto(game);
     gameDetailDto.setImages(
         game.getImages().stream()
-            .map(g -> new ImageDto(BACKEND_HOST + "/images/" + g.getName()))
+            .map(g -> new ImageDto().src(BACKEND_HOST + "/images/" + g.getName()))
             .collect(Collectors.toList()));
     gameDetailDto.setRulesUrl(BACKEND_HOST + "/rules/" + game.getName().replace(" ", "") + ".pdf");
     long expansionsOwned =

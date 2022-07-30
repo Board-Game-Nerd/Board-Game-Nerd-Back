@@ -1,49 +1,47 @@
 package com.eliasfb.bgn.controller;
 
-import com.eliasfb.bgn.dto.ResponseDto;
-import com.eliasfb.bgn.dto.player.CreatePlayerDto;
-import com.eliasfb.bgn.dto.player.PlayerDetailDto;
-import com.eliasfb.bgn.dto.player.PlayerDto;
-import com.eliasfb.bgn.dto.player.group.PlayerGroupDto;
+import com.eliasfb.bgn.openapi.api.PlayersApi;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
-@RequestMapping({"/players"})
-public class PlayerController {
+@Controller
+public class PlayerController implements PlayersApi {
   @Autowired private PlayerService service;
 
-  @GetMapping(path = {"/ids"})
-  public List<Integer> findIds() {
-    return this.service.findIds();
+  @Override
+  public ResponseEntity<List<Integer>> getPlayerIds() {
+    return ResponseEntity.ok(this.service.findIds());
   }
 
-  @GetMapping
-  public List<PlayerDto> findAll() {
-    return this.service.findAll();
+  @Override
+  public ResponseEntity<List<PlayerDto>> getPlayers() {
+    return ResponseEntity.ok(this.service.findAll());
   }
 
-  @GetMapping(path = {"/groups"})
-  public List<PlayerGroupDto> findAllPlayerGroups() {
-    return this.service.findAllPlayerGroups();
+  @Override
+  public ResponseEntity<List<PlayerGroupDto>> getPlayerGroups() {
+    return ResponseEntity.ok(this.service.findAllPlayerGroups());
   }
 
-  @GetMapping(path = {"/{id}"})
-  public PlayerDetailDto findById(@PathVariable("id") int id) {
+  @Override
+  public ResponseEntity<PlayerDetailDto> getPlayerById(Integer playerId) {
     try {
-      return this.service.findById(id);
+      return ResponseEntity.ok(this.service.findById(playerId));
     } catch (Exception e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  @PostMapping
-  public ResponseDto create(@RequestBody CreatePlayerDto player) {
-    return this.service.create(player);
+  @Override
+  public ResponseEntity<ResponseDto> createPlayer(CreatePlayerDto createPlayer) {
+    return ResponseEntity.ok(this.service.create(createPlayer));
   }
 }

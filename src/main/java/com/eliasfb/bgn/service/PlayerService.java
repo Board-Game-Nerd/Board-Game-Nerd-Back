@@ -1,16 +1,11 @@
 package com.eliasfb.bgn.service;
 
-import com.eliasfb.bgn.dto.ResponseDto;
-import com.eliasfb.bgn.dto.game.GameStatDto;
-import com.eliasfb.bgn.dto.player.CreatePlayerDto;
-import com.eliasfb.bgn.dto.player.PlayerDetailDto;
-import com.eliasfb.bgn.dto.player.PlayerDto;
-import com.eliasfb.bgn.dto.player.group.PlayerGroupDto;
 import com.eliasfb.bgn.mapper.PlayerMapper;
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.PlayPlayerRel;
 import com.eliasfb.bgn.model.Player;
 import com.eliasfb.bgn.model.PlayerGroup;
+import com.eliasfb.bgn.openapi.model.*;
 import com.eliasfb.bgn.repository.PlayerGroupRepository;
 import com.eliasfb.bgn.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
 import static com.eliasfb.bgn.service.DateService.STANDARD_DATE_FORMAT;
+import static com.eliasfb.bgn.service.GameService.OK_CODE;
 
 @Service
 public class PlayerService {
@@ -96,7 +92,8 @@ public class PlayerService {
     return playerDetailDto;
   }
 
-  public GameStatDto getFavouriteGame(List<PlayPlayerRel> playerPlays) {
+  public com.eliasfb.bgn.openapi.model.GameStatDto getFavouriteGame(
+      List<PlayPlayerRel> playerPlays) {
     Map<Game, Integer> gamePlaysGroupedByGame =
         playerPlays.stream()
             .collect(
@@ -109,11 +106,11 @@ public class PlayerService {
         .findFirst()
         .map(
             entry ->
-                new GameStatDto(
-                    entry.getKey().getId(),
-                    entry.getKey().getName(),
-                    GameService.getFirstImageUrl(entry.getKey()),
-                    entry.getValue().toString()))
+                new GameStatDto()
+                    .gameId(entry.getKey().getId())
+                    .gameName(entry.getKey().getName())
+                    .gameImageUrl(GameService.getFirstImageUrl(entry.getKey()))
+                    .value(entry.getValue().toString()))
         .orElse(null);
   }
 
@@ -145,13 +142,14 @@ public class PlayerService {
         .findFirst()
         .map(
             entry ->
-                new GameStatDto(
-                    entry.getKey().getId(),
-                    entry.getKey().getName(),
-                    GameService.getFirstImageUrl(entry.getKey()),
-                    entry.getValue().toString(),
-                    getNumberOfPlaysOnGame(entry.getKey(), playerPlaysOfNonCooperativeGames)
-                        .toString()))
+                new GameStatDto()
+                    .gameId(entry.getKey().getId())
+                    .gameName(entry.getKey().getName())
+                    .gameImageUrl(GameService.getFirstImageUrl(entry.getKey()))
+                    .value(entry.getValue().toString())
+                    .secondValue(
+                        getNumberOfPlaysOnGame(entry.getKey(), playerPlaysOfNonCooperativeGames)
+                            .toString()))
         .orElse(null);
   }
 
@@ -167,11 +165,12 @@ public class PlayerService {
         .findFirst()
         .map(
             latestPlay ->
-                new GameStatDto(
-                    latestPlay.getId().getPlay().getGame().getId(),
-                    latestPlay.getId().getPlay().getGame().getName(),
-                    GameService.getFirstImageUrl(latestPlay.getId().getPlay().getGame()),
-                    STANDARD_DATE_FORMAT.format(latestPlay.getId().getPlay().getDate())))
+                new GameStatDto()
+                    .gameId(latestPlay.getId().getPlay().getGame().getId())
+                    .gameName(latestPlay.getId().getPlay().getGame().getName())
+                    .gameImageUrl(
+                        GameService.getFirstImageUrl(latestPlay.getId().getPlay().getGame()))
+                    .value(STANDARD_DATE_FORMAT.format(latestPlay.getId().getPlay().getDate())))
         .orElse(null);
   }
 
@@ -226,7 +225,8 @@ public class PlayerService {
 
   @Transactional
   public ResponseDto create(CreatePlayerDto playerDto) {
-    ResponseDto responseDto = new ResponseDto(ResponseDto.OK_CODE, "Player created successfully");
+    ResponseDto responseDto =
+        new ResponseDto().errorCode(OK_CODE).message("Player created successfully");
     if (!StringUtils.isEmpty(playerDto.getName())) {
       this.repository.save(this.mapper.createPlayerToPlayer(playerDto));
     }
