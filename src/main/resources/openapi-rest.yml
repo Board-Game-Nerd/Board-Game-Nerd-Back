@@ -586,6 +586,40 @@ definitions:
         example: 10
       expansions:
         $ref: "#/definitions/GameExpansions"
+      playConfiguration:
+        $ref: "#/definitions/GamePlayConfiguration"
+  GamePlayConfiguration:
+    properties:
+      isScorable:
+        type: boolean
+        description: Indicates whether or not the players can score points on a play from this game
+        default: true
+      playerSelection:
+        $ref: "#/definitions/GamePlayPlayerSelection"
+  GamePlayPlayerSelection:
+    description: Optional selection for every player to add context on its role / faction on the play
+    properties:
+      isMultipleSelection:
+        type: boolean
+        description: Indicates that this selection can be made several times for every player, i.e. card games that can have several factions on the same deck
+        default: false
+      items:
+        type: array
+        description: Optional selection for every player to add context on its role / faction on the play
+        items:
+          $ref: "#/definitions/GamePlayPlayerSelectionOption"
+  GamePlayPlayerSelectionOption:
+    properties:
+      name:
+        type: string
+        example: "Luz"
+      imageUrl:
+        type: string
+        example: "http://192.168.0.25:8080/playerselection/luz.jpg"
+      subSelection:
+        allOf:
+          - $ref: "#/definitions/GamePlayPlayerSelection"
+          - example: {"isMultipleSelection": false, "items":[{"name": "Rebeldes", "imageUrl": "http://192.168.0.25:8080/playerselection/rebeldes.jpg"}]}
   GameExpansions:
     type: object
     properties:

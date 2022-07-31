@@ -80,6 +80,12 @@ public class Game implements Serializable, Comparable {
   @JsonIgnore
   private List<GameExpansion> expansions;
 
+  @OneToMany(
+      mappedBy = "id.game",
+      fetch = FetchType.LAZY,
+      cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
+  private List<GamePlayerSelectionRel> gamePlayerSelections;
+
   public Double getAverageScore() {
     return this.scores.stream().mapToInt(Score::getValue).average().orElse(0);
   }
