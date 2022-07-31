@@ -2,12 +2,16 @@ package com.eliasfb.bgn.mapper;
 
 import com.eliasfb.bgn.model.Game;
 import com.eliasfb.bgn.model.GameExpansion;
+import com.eliasfb.bgn.model.GamePlayPlayerSelection;
+import com.eliasfb.bgn.model.GamePlayerSelectionRel;
 import com.eliasfb.bgn.openapi.model.*;
 import com.mysql.cj.util.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -77,7 +81,51 @@ public interface GameMapper {
         (float) expansionsOwned / (float) gameDetailDto.getExpansions().getContent().size();
     gameDetailDto.getExpansions().setPercentageOwned(Math.round(expansionsPercentage * 100));
     gameDetailDto.setNumPlays(game.getPlays().size());
+    gameDetailDto.setPlayConfiguration(getGamePlayConfigurationDtoFromGame(game));
     return gameDetailDto;
+  }
+
+  default GamePlayConfigurationDto getGamePlayConfigurationDtoFromGame(Game game) {
+    GamePlayConfigurationDto gamePlayConfigurationDto =
+        new GamePlayConfigurationDto().isScorable(game.isScorable());
+    List<GamePlayerSelectionRel> gamePlayerSelectionRels = game.getGamePlayerSelections();
+    if (!CollectionUtils.isEmpty(gamePlayerSelectionRels)) {
+      List<GamePlayPlayerSelectionOptionDto> firstLevelSelection =
+          game.getGamePlayerSelections().stream()
+              .sorted(Comparator.comparingInt(GamePlayerSelectionRel::getSequence))
+              .map(
+                  gamePlayerSelectionRel -> {
+                    GamePlayPlayerSelection playerSelection =
+                        gamePlayerSelectionRel.getId().getPlayerSelection();
+                    return createGamePlayPlayerSelectionOptionDto(playerSelection.getName())
+                        .subSelection(
+                            new GamePlayPlayerSelectionDto()
+                                .items(
+                                    Arrays.asList(playerSelection.getSubselection().split(","))
+                                        .stream()
+                                        .map(
+                                            subselectionName ->
+                                                createGamePlayPlayerSelectionOptionDto(
+                                                    subselectionName))
+                                        .collect(Collectors.toList())));
+                  })
+              .collect(Collectors.toList());
+      gamePlayConfigurationDto =
+          gamePlayConfigurationDto.playerSelection(
+              new GamePlayPlayerSelectionDto().items(firstLevelSelection));
+    }
+    return gamePlayConfigurationDto;
+  }
+
+  default GamePlayPlayerSelectionOptionDto createGamePlayPlayerSelectionOptionDto(
+      String playerSelectionName) {
+    return new GamePlayPlayerSelectionOptionDto()
+        .name(playerSelectionName)
+        .imageUrl(
+            BACKEND_HOST
+                + "/playerselection/"
+                + playerSelectionName.replace(" ", "").toLowerCase()
+                + ".jpg");
   }
 
   @Mapping(source = "themeId", target = "theme.id")
