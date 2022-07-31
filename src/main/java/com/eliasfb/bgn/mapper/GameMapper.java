@@ -97,17 +97,22 @@ public interface GameMapper {
                   gamePlayerSelectionRel -> {
                     GamePlayPlayerSelection playerSelection =
                         gamePlayerSelectionRel.getId().getPlayerSelection();
-                    return createGamePlayPlayerSelectionOptionDto(playerSelection.getName())
-                        .subSelection(
-                            new GamePlayPlayerSelectionDto()
-                                .items(
-                                    Arrays.asList(playerSelection.getSubselection().split(","))
-                                        .stream()
-                                        .map(
-                                            subselectionName ->
-                                                createGamePlayPlayerSelectionOptionDto(
-                                                    subselectionName))
-                                        .collect(Collectors.toList())));
+                    GamePlayPlayerSelectionOptionDto option =
+                        createGamePlayPlayerSelectionOptionDto(playerSelection.getName());
+                    if (!StringUtils.isNullOrEmpty(playerSelection.getSubselection())) {
+                      option =
+                          option.subSelection(
+                              new GamePlayPlayerSelectionDto()
+                                  .items(
+                                      Arrays.asList(playerSelection.getSubselection().split(","))
+                                          .stream()
+                                          .map(
+                                              subselectionName ->
+                                                  createGamePlayPlayerSelectionOptionDto(
+                                                      subselectionName))
+                                          .collect(Collectors.toList())));
+                    }
+                    return option;
                   })
               .collect(Collectors.toList());
       gamePlayConfigurationDto =
@@ -123,7 +128,7 @@ public interface GameMapper {
         .name(playerSelectionName)
         .imageUrl(
             BACKEND_HOST
-                + "/playerselection/"
+                + "/images/playerselection/"
                 + playerSelectionName.replace(" ", "").toLowerCase()
                 + ".jpg");
   }

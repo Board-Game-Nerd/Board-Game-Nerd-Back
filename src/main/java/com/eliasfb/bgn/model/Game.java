@@ -10,9 +10,28 @@ import java.util.List;
 @Entity
 @Table(name = "game")
 @Data
-@ToString(exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
+@ToString(
+    exclude = {
+      "theme",
+      "complexity",
+      "location",
+      "medium",
+      "style",
+      "victory",
+      "plays",
+      "gamePlayerSelections"
+    })
 @EqualsAndHashCode(
-    exclude = {"theme", "complexity", "location", "medium", "style", "victory", "plays"})
+    exclude = {
+      "theme",
+      "complexity",
+      "location",
+      "medium",
+      "style",
+      "victory",
+      "plays",
+      "gamePlayerSelections"
+    })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
