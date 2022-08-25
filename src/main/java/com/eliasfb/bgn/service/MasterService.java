@@ -1,7 +1,6 @@
 package com.eliasfb.bgn.service;
 
 import com.eliasfb.bgn.mapper.MasterMapper;
-import com.eliasfb.bgn.openapi.model.MasterDto;
 import com.eliasfb.bgn.openapi.model.MastersDto;
 import com.eliasfb.bgn.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +19,16 @@ public class MasterService {
   @Autowired private MasterMapper mapper;
 
   public MastersDto findAll() {
-    List<MasterDto> themesDto =
-        this.mapper.themeToMasterDto(this.themeRepository.findByOrderByNameAsc());
-    List<MasterDto> complexitiesDto =
-        this.mapper.complexityToMasterDto(this.complexityRepository.findAll());
-    List<MasterDto> locationsDto =
-        this.mapper.locationToMasterDto(this.locationRepository.findByOrderByNameAsc());
-    List<MasterDto> mediaDto =
-        this.mapper.mediumToMasterDto(this.mediumRepository.findByOrderByNameAsc());
-    List<MasterDto> stylesDto =
-        this.mapper.styleToMasterDto(this.styleRepository.findByOrderByNameAsc());
-    List<MasterDto> victoriesDto =
-        this.mapper.victoryToMasterDto(this.victoryRepository.findByOrderByNameAsc());
+    List<String> themesDto = this.mapper.themeToString(this.themeRepository.findByOrderByNameAsc());
+    List<String> complexitiesDto =
+        this.mapper.complexityToString(this.complexityRepository.findAll());
+    List<String> locationsDto =
+        this.mapper.locationToString(this.locationRepository.findByOrderByNameAsc());
+    List<String> mediaDto =
+        this.mapper.mediumToString(this.mediumRepository.findByOrderByNameAsc());
+    List<String> stylesDto = this.mapper.styleToString(this.styleRepository.findByOrderByNameAsc());
+    List<String> victoriesDto =
+        this.mapper.victoryToString(this.victoryRepository.findByOrderByNameAsc());
 
     return new MastersDto()
         .themes(themesDto)

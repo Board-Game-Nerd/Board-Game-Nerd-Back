@@ -24,9 +24,10 @@ public interface GameMapper {
     return games.stream().map(g -> this.gameToGameDto(g)).collect(Collectors.toList());
   }
 
-  @Mapping(source = "location.name", target = "location")
   @Mapping(source = "victory.name", target = "victory")
   @Mapping(source = "theme.name", target = "theme")
+  @Mapping(source = "complexity.name", target = "complexity")
+  @Mapping(source = "location.name", target = "location")
   @Mapping(source = "averageScore", target = "avgScore")
   @Mapping(source = "medium.name", target = "medium")
   @Mapping(target = "featuresDisabled", ignore = true)
@@ -58,6 +59,7 @@ public interface GameMapper {
   @Mapping(target = "name", source = "id.name")
   GameExpansionDto gameExpansionToGameExpansionDto(GameExpansion gameExpansion);
 
+  @Mapping(source = "location.name", target = "location")
   @Mapping(source = "victory.name", target = "victory")
   @Mapping(source = "theme.name", target = "theme")
   @Mapping(source = "complexity.name", target = "complexity")

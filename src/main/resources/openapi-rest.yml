@@ -503,27 +503,27 @@ definitions:
       themes:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
       complexities:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
       locations:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
       media:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
       styles:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
       victories:
         type: array
         items:
-          $ref: "#/definitions/Master"
+          type: string
   GameDetail:
     type: object
     properties:
@@ -545,7 +545,7 @@ definitions:
         items:
           $ref: "#/definitions/Image"
       location:
-        $ref: "#/definitions/Master"
+        type: string
       complexity:
         type: "string"
         example: "Party"
@@ -688,7 +688,7 @@ definitions:
         type: "string"
         example: "Baul"
       complexity:
-        $ref: "#/definitions/Master"
+        type: string
       minPlayers:
         type: "integer"
         format: "int32"
@@ -736,16 +736,6 @@ definitions:
     description: Represents possible features of the system that can be disabled on certain games
     enum:
       - RANDOM_GAME
-  Master:
-    type: object
-    properties:
-      id:
-        type: "integer"
-        format: "int32"
-        example: 1
-      name:
-        type: "string"
-        example: "Party"
   Response:
     type: object
     properties:

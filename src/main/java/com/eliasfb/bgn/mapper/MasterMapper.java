@@ -1,7 +1,6 @@
 package com.eliasfb.bgn.mapper;
 
 import com.eliasfb.bgn.model.*;
-import com.eliasfb.bgn.openapi.model.MasterDto;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -9,15 +8,39 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MasterMapper {
 
-  List<MasterDto> themeToMasterDto(List<Theme> theme);
+  default String themeToString(Theme theme) {
+    return theme.getName();
+  }
 
-  List<MasterDto> complexityToMasterDto(List<Complexity> complexity);
+  List<String> themeToString(List<Theme> theme);
 
-  List<MasterDto> locationToMasterDto(List<Location> location);
+  default String complexityToString(Complexity complexity) {
+    return complexity.getName();
+  }
 
-  List<MasterDto> mediumToMasterDto(List<Medium> medium);
+  List<String> complexityToString(List<Complexity> complexity);
 
-  List<MasterDto> styleToMasterDto(List<Style> style);
+  default String locationToString(Location location) {
+    return location.getName();
+  }
 
-  List<MasterDto> victoryToMasterDto(List<Victory> victory);
+  List<String> locationToString(List<Location> location);
+
+  default String mediumToString(Medium medium) {
+    return medium.getName();
+  }
+
+  List<String> mediumToString(List<Medium> medium);
+
+  default String styleToString(Style style) {
+    return style.getName();
+  }
+
+  List<String> styleToString(List<Style> style);
+
+  default String victoryToString(Victory victory) {
+    return victory.getName();
+  }
+
+  List<String> victoryToString(List<Victory> victory);
 }
